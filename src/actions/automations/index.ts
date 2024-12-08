@@ -71,7 +71,7 @@ export const updateAutomationName = async (
 
 export const saveListener = async (
     autmationId: string,
-    listener: 'VERTICALAI' | 'MESSAGE',
+    listener: 'PROXYAI' | 'MESSAGE',
     prompt: string,
     reply?: string
 ) => {

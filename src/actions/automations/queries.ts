@@ -75,7 +75,7 @@ export const updateAutomation = async (
 
 export const addListener = async (
     automationId: string,
-    listener: 'VERTICALAI' | 'MESSAGE',
+    listener: 'PROXYAI' | 'MESSAGE',
     prompt: string,
     reply?: string
 ) => {

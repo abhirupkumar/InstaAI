@@ -123,6 +123,6 @@ enum MEDIATYPE {
 }
 
 enum LISTENERS {
-    VERTICALAI
+    PROXYAI
     MESSAGE
 }

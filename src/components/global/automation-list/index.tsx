@@ -15,7 +15,7 @@ const AutomationList = (props: Props) => {
     const { data } = useQueryAutomations()
 
     const { latestVariable } = useMutationDataState(['create-automation'])
-    console.log(latestVariable)
+
     const { pathname } = usePaths()
 
     const optimisticUiData = useMemo(() => {
@@ -88,7 +88,7 @@ const AutomationList = (props: Props) => {
                             {automation.createdAt.getUTCFullYear()}
                         </p>
 
-                        {automation.listener?.listener === 'SMARTAI' ? (
+                        {automation.listener?.listener === 'PROXYAI' ? (
                             <GradientButton
                                 type="BUTTON"
                                 className="w-full bg-background-80 text-white hover:bg-background-80"
