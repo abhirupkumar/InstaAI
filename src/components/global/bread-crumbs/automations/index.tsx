@@ -6,6 +6,7 @@ import { useQueryAutomation } from '@/hooks/user-queries'
 import { useEditAutomation } from '@/hooks/use-automations'
 import { useMutationDataState } from '@/hooks/use-mutation-data'
 import { Input } from '@/components/ui/input'
+import { ModeToggle } from '../../mode-toggle'
 
 type Props = {
     id: string
@@ -18,7 +19,7 @@ const AutomationsBreadCrumb = ({ id }: Props) => {
     const { latestVariable } = useMutationDataState(['update-automation'])
 
     return (
-        <div className="rounded-full w-full p-5 bg-[#18181B1A] flex items-center">
+        <div className="rounded-full w-full p-5 bg-[#5f5f631a] flex items-center">
             <div className="flex items-center gap-x-3 min-w-0">
                 <p className="text-[#9B9CA0] truncate">Automations</p>
                 <ChevronRight
@@ -55,7 +56,7 @@ const AutomationsBreadCrumb = ({ id }: Props) => {
             </div>
 
             <div className="flex items-center gap-x-5 ml-auto">
-                <p className="hidden md:block text-text-secondary/60 text-sm truncate min-w-0">
+                <p className="hidden md:block text-text-secondary/80 text-sm truncate min-w-0">
                     All states are automatically saved
                 </p>
                 <div className="flex gap-x-5 flex-shrink-0">
@@ -65,6 +66,9 @@ const AutomationsBreadCrumb = ({ id }: Props) => {
                 </div>
             </div>
             <ActivateAutomationButton id={id} />
+            <div className='mx-3'>
+                <ModeToggle />
+            </div>
         </div>
     )
 }

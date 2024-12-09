@@ -37,15 +37,15 @@ const AutomationList = (props: Props) => {
 
     return (
         <div className="flex flex-col gap-y-3">
-            {optimisticUiData.data!.map((automation) => (
+            {optimisticUiData && optimisticUiData.data.length && optimisticUiData.data.map((automation) => (
                 <Link
                     href={`${pathname}/${automation.id}`}
                     key={automation.id}
-                    className="bg-[#1D1D1D] hover:opacity-80 transition duration-100 rounded-xl p-5 border-[1px] radial--gradient--automations flex border-[#545454]"
+                    className="bg-secondary hover:opacity-80 transition duration-100 rounded-xl p-5 border-[1px] flex border-[#545454]"
                 >
                     <div className="flex flex-col flex-1 items-start">
                         <h2 className="text-xl font-semibold">{automation.name}</h2>
-                        <p className="text-[#9B9CA0] text-sm font-light mb-2">
+                        <p className="text-muted-foreground text-sm font-light mb-2">
                             This is from the comment
                         </p>
 
@@ -74,8 +74,8 @@ const AutomationList = (props: Props) => {
                                 }
                             </div>
                         ) : (
-                            <div className="rounded-full border-2 mt-3 border-dashed border-white/60 px-3 py-1">
-                                <p className="text-sm text-[#bfc0c3]">No Keywords</p>
+                            <div className="rounded-full border-2 mt-3 border-dashed border-black/40 dark:border-white/60 px-3 py-1">
+                                <p className="text-sm text-black/40 dark:text-[#bfc0c3]">No Keywords</p>
                             </div>
                         )}
                     </div>
@@ -96,7 +96,7 @@ const AutomationList = (props: Props) => {
                                 Proxy AI
                             </GradientButton>
                         ) : (
-                            <Button className="bg-background-80 hover:bg-background-80 text-white">
+                            <Button>
                                 Standard
                             </Button>
                         )}
