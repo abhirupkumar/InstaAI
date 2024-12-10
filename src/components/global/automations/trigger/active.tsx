@@ -12,7 +12,7 @@ type Props = {
 
 const ActiveTrigger = ({ keywords, type }: Props) => {
     return (
-        <div className="bg-background-80 p-3 rounded-xl w-full">
+        <div className="bg-background/80 p-3 rounded-xl w-full">
             <div className="flex gap-x-2 items-center">
                 {type === 'COMMENT' ? <InstagramBlue /> : <PlaneBlue />}
                 <p className="text-lg">
