@@ -16,7 +16,7 @@ const PaymentCard = ({ current, label, landing }: Props) => {
             className={cn(
                 label !== current
                     ? 'bg-in-active'
-                    : 'bg-gradient-to-r from-[#60a3a0] via-[#9434E6] to-[#bd2929]',
+                    : 'bg-gradient-to-br from-[#60a3a0] via-[#9434E6] to-[#bd2929]',
                 'p-[2px] rounded-xl overflow-hidden'
             )}
         >
@@ -44,7 +44,7 @@ const PaymentCard = ({ current, label, landing }: Props) => {
                     This is what your plan covers for automations and Ai features
                 </p>
                 {label === 'PRO' ? (
-                    <span className="bg-gradient-to-tr text-3xl from-[#60a3a0] via-[#9434E6] to-[#bd2929] font-bold bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r text-3xl from-[#60a3a0] via-[#9434E6] to-[#bd2929] font-bold bg-clip-text text-transparent">
                         Proxy AI
                     </span>
                 ) : (
