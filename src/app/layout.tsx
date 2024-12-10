@@ -6,6 +6,8 @@ import { ThemeProvider } from '@/providers/theme-provider'
 import { Toaster } from 'sonner'
 import ReactQueryProvider from '@/providers/react-query-provider'
 import ReduxProvider from '@/providers/redux-provider'
+import iconLight from '@/public/images/icon-light.svg'
+import iconDark from '@/public/images/icon-dark.svg'
 
 const novaSquare = Nova_Square({ subsets: ['latin'], weight: '400' })
 
@@ -15,12 +17,12 @@ export const metadata: Metadata = {
   icons: [
     {
       media: "(prefers-color-scheme: light)",
-      url: '/images/icon-light.svg',
+      url: iconLight.src,
       type: "image/svg+xml",
     },
     {
       media: "(prefers-color-scheme: dark)",
-      url: '/images/icon-dark.png',
+      url: iconDark.src,
       type: "image/svg+xml",
     },
   ],
