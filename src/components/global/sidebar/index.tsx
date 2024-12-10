@@ -50,14 +50,14 @@ const Sidebar = ({ slug }: Props) => {
             >
                 <div className="flex gap-x-2 items-center p-5 justify-center">
                     <Image
-                        src="/images/logo-white.png"
+                        src="/images/logo-white.svg"
                         alt="Proxy Logo"
                         height={100}
                         width={300}
                         className="block dark:hidden"
                     />
                     <Image
-                        src="/images/logo-dark.png"
+                        src="/images/logo-dark.svg"
                         alt="Proxy Logo"
                         height={100}
                         width={300}
