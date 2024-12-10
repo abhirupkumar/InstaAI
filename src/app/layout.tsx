@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/providers/theme-provider'
 import { Toaster } from 'sonner'
 import ReactQueryProvider from '@/providers/react-query-provider'
 import ReduxProvider from '@/providers/redux-provider'
+import CustomClerkProvider from '@/components/global/clerk'
 
 const novaSquare = Nova_Square({ subsets: ['latin'], weight: '400' })
 
@@ -32,25 +33,27 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body
-          suppressHydrationWarning
-          className={novaSquare.className}
+    <html lang="en">
+      <body
+        suppressHydrationWarning
+        className={novaSquare.className}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          disableTransitionOnChange
         >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            disableTransitionOnChange
-          >
-            <ReduxProvider>
-              <ReactQueryProvider>{children}</ReactQueryProvider>
-            </ReduxProvider>
+          <ReduxProvider>
+            <ReactQueryProvider>
+              <CustomClerkProvider>
+                {children}
+              </CustomClerkProvider>
+            </ReactQueryProvider>
+          </ReduxProvider>
 
-            <Toaster />
-          </ThemeProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+          <Toaster />
+        </ThemeProvider>
+      </body>
+    </html>
   )
 }
