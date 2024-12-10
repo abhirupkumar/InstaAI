@@ -23,7 +23,7 @@ const PaymentCard = ({ current, label, landing }: Props) => {
             <div
                 className={cn(
                     landing && 'radial--gradient--pink',
-                    'flex flex-col rounded-xl pl-5 py-5 pr-10 bg-background-90 h-full'
+                    'flex flex-col rounded-xl pl-5 py-5 pr-10 bg-secondary h-full'
                 )}
             >
                 {landing ? (
@@ -44,7 +44,7 @@ const PaymentCard = ({ current, label, landing }: Props) => {
                     This is what your plan covers for automations and Ai features
                 </p>
                 {label === 'PRO' ? (
-                    <span className="bg-gradient-to-tr text-3xl from-[#9434E6] to-[#bd2929] font-bold bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-tr text-3xl from-[#60a3a0] via-[#9434E6] to-[#bd2929] font-bold bg-clip-text text-transparent">
                         Proxy AI
                     </span>
                 ) : (
