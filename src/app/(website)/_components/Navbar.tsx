@@ -24,8 +24,8 @@ export async function Navbar() {
                 <div className="flex items-center justify-between h-16">
                     <div className="flex-shrink-0">
                         <Link href="/">
-                            <Image src="/images/logo-white.svg" alt="Proxy Logo" width={50} height={32} className="block dark:hidden" />
-                            <Image src="/images/logo-dark.svg" alt="Proxy Logo" width={50} height={32} className="hidden dark:block" />
+                            <Image src="/images/logo-white.svg" alt="Proxy Logo" width={100} height={50} className="block dark:hidden" />
+                            <Image src="/images/logo-dark.svg" alt="Proxy Logo" width={100} height={50} className="hidden dark:block" />
                         </Link>
                     </div>
                     <div className="hidden md:block">
