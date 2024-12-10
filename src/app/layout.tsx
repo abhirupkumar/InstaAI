@@ -11,7 +11,19 @@ const novaSquare = Nova_Square({ subsets: ['latin'], weight: '400' })
 
 export const metadata: Metadata = {
   title: 'Proxy',
-  description: 'Automate DMs and comments on Instagram',
+  description: 'Proxy is an AI Social Media Engagement Automation Platform',
+  icons: [
+    {
+      media: "(prefers-color-scheme: light)",
+      url: '/images/icon-light.svg',
+      type: "image/svg+xml",
+    },
+    {
+      media: "(prefers-color-scheme: dark)",
+      url: '/images/icon-dark.png',
+      type: "image/svg+xml",
+    },
+  ],
 }
 
 export default function RootLayout({
