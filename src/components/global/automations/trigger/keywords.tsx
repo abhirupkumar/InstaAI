@@ -11,7 +11,7 @@ type Props = {
 
 export const Keywords = ({ id }: Props) => {
     const { onValueChange, keyword, onKeyPress, deleteMutation } = useKeywords(id)
-    const { latestVariable } = useMutationDataState(['add-keyword'])
+    const { latestVariable } = useMutationDataState(['add-keyword', 'delete-keyword'])
     const { data } = useQueryAutomation(id)
 
     return (
@@ -23,15 +23,20 @@ export const Keywords = ({ id }: Props) => {
                 {data?.data?.keywords &&
                     data?.data?.keywords.length > 0 &&
                     data?.data?.keywords.map(
-                        (word) =>
-                            word.id !== latestVariable.variables.id && (
+                        (word) => {
+                            return (!latestVariable || word.id !== latestVariable.variables.id) && (
                                 <div
-                                    className="bg-background-90 flex items-center gap-x-2 capitalize text-text-secondary py-1 px-4 rounded-full"
+                                    className="bg-background flex items-center gap-x-2 capitalize text-text-secondary border border-[#1C2D70] py-1 px-4 rounded-full"
                                     key={word.id}
                                 >
                                     <p>{word.word}</p>
+                                    <X
+                                        onClick={() => deleteMutation({ id: word.id })}
+                                        className="cursor-pointer"
+                                    />
                                 </div>
                             )
+                        }
                     )}
                 {latestVariable && latestVariable.status === 'pending' && (
                     <div className="bg-background-90 flex items-center gap-x-2 capitalize text-text-secondary py-1 px-4 rounded-full">

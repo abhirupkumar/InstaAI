@@ -46,7 +46,10 @@ const Trigger = ({ id }: Props) => {
                     </>
                 )}
 
-                {!data.data.listener && <ThenAction id={id} />}
+                {!data.data.listener && <div className='flex flex-col w-full'>
+                    <Keywords id={id} />
+                    <ThenAction id={id} />
+                </div>}
             </div>
         )
     }

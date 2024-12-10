@@ -1,4 +1,5 @@
 import { InstagramBlue, PlaneBlue } from '@/icons'
+import { X } from 'lucide-react'
 import React from 'react'
 
 type Props = {
@@ -26,16 +27,6 @@ const ActiveTrigger = ({ keywords, type }: Props) => {
                     ? 'If the user comments on a video that is setup to listen for keyworks, this automation will fire'
                     : 'If the user send your a message that contains a keyword, this automation will fire'}
             </p>
-            <div className="flex  ga-2 mt-5 flex-wrap">
-                {keywords.map((word) => (
-                    <div
-                        key={word.id}
-                        className="bg-gradient-to-br from-[#3352CC] to-[#1C2D70] flex items-center gap-x-2 capitalize text-white font-light py-1 px-4 rounded-full"
-                    >
-                        <p>{word.word}</p>
-                    </div>
-                ))}
-            </div>
         </div>
     )
 }
