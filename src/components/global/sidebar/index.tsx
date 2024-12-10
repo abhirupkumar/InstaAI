@@ -53,14 +53,14 @@ const Sidebar = ({ slug }: Props) => {
                         src="/images/logo-white.svg"
                         alt="Proxy Logo"
                         height={100}
-                        width={300}
+                        width={200}
                         className="block dark:hidden"
                     />
                     <Image
                         src="/images/logo-dark.svg"
                         alt="Proxy Logo"
                         height={100}
-                        width={300}
+                        width={200}
                         className="hidden dark:block"
                     />
                 </div>
