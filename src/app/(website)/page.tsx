@@ -193,7 +193,7 @@ export default function Home() {
                         />
                     </div>
                     <div className="space-y-6">
-                        <span className="text-sm font-medium">Smart</span>
+                        <span className="text-sm font-medium">Proxy AI</span>
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
                             Experience Seamless AI-Driven Customer Interactions
                         </h2>

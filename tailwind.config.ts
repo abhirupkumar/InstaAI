@@ -20,7 +20,7 @@ const config = {
 		extend: {
 			colors: {
 				'in-active': '#545454',
-				connector: '#F0F1F6',
+				connector: '#18181b4d',
 				'keyword-yellow': '#E1CE26',
 				'keyword-purple': '#7C21D6',
 				'keyword-red': '#EB441F',

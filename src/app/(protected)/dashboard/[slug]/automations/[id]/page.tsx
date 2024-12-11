@@ -1,6 +1,6 @@
 import { getAutomationInfo } from '@/actions/automations'
-// import PostNode from '@/components/global/automations/post/node'
-// import ThenNode from '@/components/global/automations/then/node'
+import PostNode from '@/components/global/automations/post/node'
+import ThenNode from '@/components/global/automations/then/node'
 import Trigger from '@/components/global/automations/trigger'
 import AutomationsBreadCrumb from '@/components/global/bread-crumbs/automations'
 import { Warning } from '@/icons'
@@ -15,7 +15,7 @@ import {
 import React from 'react'
 
 type Props = {
-    params: { id: string }
+    params: { id: string, slug: string }
 }
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
@@ -32,7 +32,7 @@ const Page = async ({ params }: Props) => {
     return (
         <HydrationBoundary state={dehydrate(query)}>
             <div className=" flex flex-col items-center gap-y-20">
-                <AutomationsBreadCrumb id={params.id} />
+                <AutomationsBreadCrumb slug={params.slug} id={params.id} />
                 <div className="w-full lg:w-10/12 xl:w-6/12 p-5 rounded-xl flex flex-col bg-secondary gap-y-3">
                     <div className="flex gap-x-2">
                         <Warning />
@@ -40,8 +40,8 @@ const Page = async ({ params }: Props) => {
                     </div>
                     <Trigger id={params.id} />
                 </div>
-                {/* <ThenNode id={params.id} />
-                <PostNode id={params.id} /> */}
+                <ThenNode id={params.id} />
+                <PostNode id={params.id} />
             </div>
         </HydrationBoundary>
     )

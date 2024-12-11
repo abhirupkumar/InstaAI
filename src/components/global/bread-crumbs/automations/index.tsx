@@ -7,12 +7,14 @@ import { useEditAutomation } from '@/hooks/use-automations'
 import { useMutationDataState } from '@/hooks/use-mutation-data'
 import { Input } from '@/components/ui/input'
 import { ModeToggle } from '../../mode-toggle'
+import InfoBar from '../../infobar'
 
 type Props = {
-    id: string
+    id: string,
+    slug: string,
 }
 
-const AutomationsBreadCrumb = ({ id }: Props) => {
+const AutomationsBreadCrumb = ({ id, slug }: Props) => {
     const { data } = useQueryAutomation(id)
     const { edit, enableEdit, inputRef, isPending } = useEditAutomation(id)
 
@@ -20,7 +22,8 @@ const AutomationsBreadCrumb = ({ id }: Props) => {
 
     return (
         <div className="rounded-full w-full p-5 bg-[#5f5f631a] flex items-center">
-            <div className="flex items-center gap-x-3 min-w-0">
+            <InfoBar slug={id} onlyMenu={true} />
+            <div className="flex items-center gap-x-3 min-w-0 ml-4">
                 <p className="text-[#9B9CA0] truncate">Automations</p>
                 <ChevronRight
                     className="flex-shrink-0"

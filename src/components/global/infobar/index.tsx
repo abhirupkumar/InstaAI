@@ -20,66 +20,26 @@ import Image from 'next/image'
 import { ModeToggle } from '../mode-toggle'
 
 type Props = {
-    slug: string
+    slug: string,
+    onlyMenu?: boolean
 }
 
-const InfoBar = ({ slug }: Props) => {
+const InfoBar = ({ slug, onlyMenu = false }: Props) => {
     const { page } = usePaths()
     const currentPage = PAGE_BREAD_CRUMBS.includes(page) || page == slug
+
+    if (onlyMenu) {
+        return (
+            <MenuButton page={page} slug={slug} />
+        )
+    }
 
     return (
         currentPage && (
             <div className="flex flex-col">
                 <div className="flex gap-x-3 lg:gap-x-5 justify-end items-center">
                     <span className="lg:hidden flex items-center flex-1 gap-x-2">
-                        <Sheet
-                            trigger={<Menu />}
-                            className="lg:hidden"
-                            side="left"
-                        >
-                            <div className="flex flex-col gap-y-5 w-full h-full p-3 bg-secondary
-       dark:bg-black bg-opacity-90 bg-clip-padding backdrop-filter backdrop--blur__safari backdrop-blur-3xl">
-                                <div className="flex gap-x-2 items-center p-5 justify-center">
-                                    <Image
-                                        src="/images/logo-white.svg"
-                                        alt="Proxy Logo"
-                                        height={100}
-                                        width={300}
-                                        className="block dark:hidden"
-                                    />
-                                    <Image
-                                        src="/images/logo-dark.svg"
-                                        alt="Proxy Logo"
-                                        height={100}
-                                        width={300}
-                                        className="hidden dark:block"
-                                    />
-                                </div>
-                                <div className="flex flex-col py-3">
-                                    <Items
-                                        page={page}
-                                        slug={slug}
-                                    />
-                                </div>
-                                <div className="px-16">
-                                    <Separator
-                                        orientation="horizontal"
-                                        className="bg-[#333336]"
-                                    />
-                                </div>
-                                <div className="px-3 flex flex-col gap-y-5">
-                                    <div className="flex gap-x-3">
-                                        <HelpDuoToneWhite />
-                                        <p className="text-[#9B9CA0]">Help</p>
-                                    </div>
-                                </div>
-                                <SubscriptionPlan type="FREE">
-                                    <div className="flex-1 flex flex-col justify-end">
-                                        <UpgradeCard />
-                                    </div>
-                                </SubscriptionPlan>
-                            </div>
-                        </Sheet>
+                        <MenuButton page={page} slug={slug} />
                     </span>
                     <Search />
                     <CreateAutomation />
@@ -93,6 +53,63 @@ const InfoBar = ({ slug }: Props) => {
                 />
             </div>
         )
+    )
+}
+
+const MenuButton = ({ page, slug }: { page: string, slug: string }) => {
+    return (
+        <span className="lg:hidden flex items-center gap-x-2">
+
+            <Sheet
+                trigger={<Menu />}
+                className="lg:hidden"
+                side="left"
+            >
+                <div className="flex flex-col gap-y-5 w-full h-full p-3 bg-secondary
+dark:bg-black bg-opacity-90 bg-clip-padding backdrop-filter backdrop--blur__safari backdrop-blur-3xl">
+                    <div className="flex gap-x-2 items-center p-5 justify-center">
+                        <Image
+                            src="/images/logo-white.svg"
+                            alt="Proxy Logo"
+                            height={100}
+                            width={300}
+                            className="block dark:hidden"
+                        />
+                        <Image
+                            src="/images/logo-dark.svg"
+                            alt="Proxy Logo"
+                            height={100}
+                            width={300}
+                            className="hidden dark:block"
+                        />
+                    </div>
+                    <div className="flex flex-col py-3">
+                        <Items
+                            page={page}
+                            slug={slug}
+                        />
+                    </div>
+                    <div className="px-16">
+                        <Separator
+                            orientation="horizontal"
+                            className="bg-[#333336]"
+                        />
+                    </div>
+                    <div className="px-3 flex flex-col gap-y-5">
+                        <div className="flex gap-x-3">
+                            <HelpDuoToneWhite />
+                            <p className="text-[#9B9CA0]">Help</p>
+                        </div>
+                    </div>
+                    <SubscriptionPlan type="FREE">
+                        <div className="flex-1 flex flex-col justify-end">
+                            <UpgradeCard />
+                        </div>
+                    </SubscriptionPlan>
+                </div>
+            </Sheet>
+
+        </span>
     )
 }
 

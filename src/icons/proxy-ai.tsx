@@ -7,7 +7,7 @@ export const ProxyAi = () => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
         >
-            <g clip-path="url(#clip0_7917_2882)">
+            <g clipPath="url(#clip0_7917_2882)">
                 <path
                     fillRule="evenodd"
                     clipRule="evenodd"
