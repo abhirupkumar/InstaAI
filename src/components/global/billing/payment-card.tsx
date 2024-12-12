@@ -44,7 +44,7 @@ const PaymentCard = ({ current, label, landing }: Props) => {
                     This is what your plan covers for automations and Ai features
                 </p>
                 {label === 'PRO' ? (
-                    <span className="bg-gradient-to-br text-3xl from-red-500 via-violet-500 to-orange-500 font-bold bg-clip-text text-transparent">
+                    <span className="bg-custom-gradient text-3xl font-bold bg-clip-text text-transparent">
                         Proxy AI
                     </span>
                 ) : (

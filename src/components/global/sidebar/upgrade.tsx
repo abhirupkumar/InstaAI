@@ -9,10 +9,7 @@ const UpgradeCard = (props: Props) => {
             <span className="text-sm">
                 Upgrade to {''}
                 <span
-                    className="bg-gradient-to-tr 
-        from-red-500 
-    via-purple-500
-    to-orange-500 
+                    className="bg-custom-gradient 
         font-bold 
         bg-clip-text 
         text-transparent"
