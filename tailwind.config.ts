@@ -19,7 +19,7 @@ const config = {
 		},
 		extend: {
 			backgroundImage: {
-				'custom-gradient': 'linear-gradient(50deg, #714dff, #9c83ff 31.28%, #e151ff 77.97%, #fff759 95.64%)',
+				'custom-gradient': 'linear-gradient(50deg, #ff4d4d, #ff9483 31.28%, #e151ff 77.97%, #a859ff 95.64%)',
 			},
 			colors: {
 				'in-active': '#545454',

@@ -64,7 +64,7 @@ const Trigger = ({ id }: Props) => {
                             'hover:opacity-80 rounded-xl flex cursor-pointer flex-col p-3 gap-y-2',
                             !types?.find((t) => t === trigger.type)
                                 ? 'bg-secondary'
-                                : 'bg-gradient-to-br from-red-500 via-purple-500 to-orange-500 font-medium'
+                                : 'bg-custom-gradient font-medium'
                         )}
                     >
                         <div className="flex gap-x-2 items-center">
@@ -78,7 +78,7 @@ const Trigger = ({ id }: Props) => {
                 <Button
                     onClick={onSaveTrigger}
                     disabled={types?.length === 0}
-                    className="bg-gradient-to-br from-red-500 via-purple-500 to-orange-500 font-medium text-white"
+                    className="bg-custom-gradient font-medium text-white"
                 >
                     <Loader state={isPending}>Create Trigger</Loader>
                 </Button>

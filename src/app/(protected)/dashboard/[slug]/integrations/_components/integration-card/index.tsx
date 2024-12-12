@@ -26,7 +26,7 @@ const IntegrationCard = ({ description, icon, strategy, title }: Props) => {
     )
 
     return (
-        <div className="bg-gradient-to-br from-red-500 via-purple-500 to-orange-500 rounded-2xl p-1">
+        <div className="bg-custom-gradient rounded-2xl p-1">
             <div className="bg-secondary rounded-2xl gap-x-5 p-4 flex items-center justify-between">
                 {icon}
                 <div className="flex flex-col flex-1">

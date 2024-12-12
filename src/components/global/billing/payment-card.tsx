@@ -16,7 +16,7 @@ const PaymentCard = ({ current, label, landing }: Props) => {
             className={cn(
                 label !== current
                     ? 'bg-in-active'
-                    : 'bg-gradient-to-br from-[#60a3a0] via-[#9434E6] to-[#bd2929]',
+                    : 'bg-custom-gradient',
                 'p-[2px] rounded-xl overflow-hidden'
             )}
         >
@@ -73,7 +73,7 @@ const PaymentCard = ({ current, label, landing }: Props) => {
                         className={cn(
                             'rounded-full mt-5',
                             label === 'PRO'
-                                ? 'bg-gradient-to-br from-red-500 text-white via-violet-500 to-orange-500'
+                                ? 'bg-custom-gradient text-white'
                                 : 'bg-background-80 text-white hover:text-background-80'
                         )}
                     >

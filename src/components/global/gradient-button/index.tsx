@@ -12,13 +12,13 @@ type Props = {
 
 const GradientButton = ({ children, type, className, href }: Props) => {
     const gradients =
-        'bg-gradient-to-r from-red-500 via-purple-500 to-red-500 rounded-xl p-[2px]'
+        'rounded-xl p-[2px]'
 
     switch (type) {
         case 'BUTTON':
             return (
                 <div className={gradients}>
-                    <Button className={cn(className, 'rounded-xl')}>{children}</Button>
+                    <Button className={cn(className, 'rounded-xl bg-custom-gradient bg-clip-text text-transparent')}>{children}</Button>
                 </div>
             )
 
@@ -27,7 +27,7 @@ const GradientButton = ({ children, type, className, href }: Props) => {
                 <div className={gradients}>
                     <Link
                         href={href!}
-                        className={cn(className, 'rounded-xl')}
+                        className={cn(className, 'rounded-xl bg-custom-gradient bg-clip-text text-transparent')}
                     >
                         {children}
                     </Link>
