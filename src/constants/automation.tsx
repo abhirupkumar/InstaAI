@@ -1,6 +1,8 @@
 import { PlaneBlue, ProxyAi, TinyInstagram } from '@/icons'
 import { v4 } from 'uuid'
 
+import type { JSX } from "react";
+
 export type AutomationListenerProps = {
     id: string
     label: string

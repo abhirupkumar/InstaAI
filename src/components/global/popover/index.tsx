@@ -4,7 +4,7 @@ import {
     PopoverTrigger,
 } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
-import React from 'react'
+import React, { type JSX } from 'react';
 
 type Props = {
     trigger: JSX.Element

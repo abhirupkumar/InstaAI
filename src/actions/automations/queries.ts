@@ -18,6 +18,14 @@ export const createAutomation = async (clerkId: string, id?: string) => {
     })
 }
 
+export const deleteAutomation = async (id?: string) => {
+    return await client.automation.delete({
+        where: {
+            id
+        },
+    })
+}
+
 export const getAutomations = async (clerkId: string) => {
     return await client.user.findUnique({
         where: {

@@ -13,10 +13,15 @@ import {
 
 type Props = {
     children: React.ReactNode
-    params: { slug: string }
+    params: Promise<{ slug: string }>
 }
 
-const Layout = async ({ children, params }: Props) => {
+const Layout = async (props: Props) => {
+    const params = await props.params;
+
+    const {
+        children
+    } = props;
 
 
     const query = new QueryClient()

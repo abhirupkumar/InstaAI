@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import {
   createAutomations,
+  deleteAutomations,
   deleteKeyword,
   saveKeyword,
   saveListener,
@@ -23,7 +24,13 @@ export const useCreateAutomation = (id?: string) => {
     'user-automations'
   )
 
-  return { isPending, mutate }
+  const { mutate: deleteMutation } = useMutationData(
+    ['delete-automation'],
+    () => deleteAutomations(id),
+    'user-automations'
+  )
+
+  return { isPending, mutate, deleteMutation }
 }
 
 export const useEditAutomation = (automationId: string) => {

@@ -8,7 +8,7 @@ import {
     trackResponses,
 } from '@/actions/webhook/queries'
 import { sendDM, sendPrivateMessage } from '@/lib/fetch'
-import { openai } from '@/lib/openai'
+import { groq } from '@/lib/groq'
 import { client } from '@/lib/prisma'
 import { NextRequest, NextResponse } from 'next/server'
 
@@ -73,8 +73,8 @@ export async function POST(req: NextRequest) {
                         automation.listener.listener === 'PROXYAI' &&
                         automation.User?.subscription?.plan === 'PRO'
                     ) {
-                        const proxy_ai_message = await openai.chat.completions.create({
-                            model: 'gpt-4o',
+                        const proxy_ai_message = await groq.chat.completions.create({
+                            model: 'llama-3.3-70b-versatile',
                             messages: [
                                 {
                                     role: 'assistant',
@@ -183,8 +183,8 @@ export async function POST(req: NextRequest) {
                             automation.listener.listener === 'PROXYAI' &&
                             automation.User?.subscription?.plan === 'PRO'
                         ) {
-                            const proxy_ai_message = await openai.chat.completions.create({
-                                model: 'gpt-4o',
+                            const proxy_ai_message = await groq.chat.completions.create({
+                                model: 'llama-3.3-70b-versatile',
                                 messages: [
                                     {
                                         role: 'assistant',
@@ -248,8 +248,8 @@ export async function POST(req: NextRequest) {
                     automation?.User?.subscription?.plan === 'PRO' &&
                     automation.listener?.listener === 'PROXYAI'
                 ) {
-                    const proxy_ai_message = await openai.chat.completions.create({
-                        model: 'gpt-4o',
+                    const proxy_ai_message = await groq.chat.completions.create({
+                        model: 'llama-3.3-70b-versatile',
                         messages: [
                             {
                                 role: 'assistant',
