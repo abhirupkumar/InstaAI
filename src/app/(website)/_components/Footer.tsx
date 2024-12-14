@@ -22,8 +22,7 @@ export function Footer() {
                         <h4 className="font-semibold mb-4">Legal</h4>
                         <ul className="space-y-2">
                             <li><Link href="/terms" className="text-sm text-primary hover:text-primary/90">Terms of Service</Link></li>
-                            <li><Link href="/privacy" className="text-sm text-primary hover:text-primary/90">Privacy Policy</Link></li>
-                            <li><Link href="/cookies" className="text-sm text-primary hover:text-primary/90">Cookie Policy</Link></li>
+                            <li><Link href="/privacy-policy" className="text-sm text-primary hover:text-primary/90">Privacy Policy</Link></li>
                         </ul>
                     </div>
                     <div>
