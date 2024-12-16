@@ -78,7 +78,8 @@ export async function POST(req: NextRequest) {
                             messages: [
                                 {
                                     role: 'assistant',
-                                    content: `${automation.listener?.prompt}: Keep responses under 2 sentences`,
+                                    content: `You are an Instagram chatbot. Follow the below instuctions properly.
+                                    Chatbot Response: ${automation.listener?.prompt}: Keep responses under 2 sentences`,
                                 },
                             ],
                         })
@@ -188,7 +189,8 @@ export async function POST(req: NextRequest) {
                                 messages: [
                                     {
                                         role: 'assistant',
-                                        content: `${automation.listener?.prompt}: keep responses under 2 sentences`,
+                                        content: `You are an Instagram chatbot. Follow the below instuctions properly.
+                                        Chatbot Response: ${automation.listener?.prompt}: keep responses under 2 sentences`,
                                     },
                                 ],
                             })
@@ -253,7 +255,7 @@ export async function POST(req: NextRequest) {
                         messages: [
                             {
                                 role: 'assistant',
-                                content: `${automation.listener?.prompt}: keep responses under 2 sentences`,
+                                content: `Chatbot Response: ${automation.listener?.prompt}: keep responses under 2 sentences`,
                             },
                             ...customer_history.history,
                             {
