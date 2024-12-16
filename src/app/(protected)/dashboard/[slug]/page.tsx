@@ -33,7 +33,7 @@ const Page = async (props: Props) => {
                             Automated Activity
                         </h2>
                         <p className="text-text-secondary text-sm">
-                            Automated 0 out of 1 interactions
+                            Automate interactions
                         </p>
                     </div>
                 </span>

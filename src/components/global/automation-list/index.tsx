@@ -2,7 +2,7 @@
 import { usePaths } from '@/hooks/user-nav'
 import { cn, getMonth } from '@/lib/utils'
 import Link from 'next/link'
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import GradientButton from '../gradient-button'
 import { Button } from '@/components/ui/button'
 import { useQueryAutomations } from '@/hooks/user-queries'
@@ -20,6 +20,8 @@ const AutomationList = (props: Props) => {
     const optimisticUiData = useMemo(() => {
         if ((latestVariable && latestVariable?.variables && data)) {
             const test = [latestVariable.variables, ...data.data]
+            // remove duplicates
+            test.filter((item, index) => test.indexOf(item) === index)
             return { data: test }
         }
         return data || { data: [] }
@@ -90,7 +92,7 @@ const AutomationList = (props: Props) => {
                         {automation.listener?.listener === 'PROXYAI' ? (
                             <GradientButton
                                 type="BUTTON"
-                                className="w-full bg-background-80 text-white hover:bg-background-80"
+                                className="w-full !bg-background-80 text-white hover:!bg-background-80"
                             >
                                 Proxy AI
                             </GradientButton>

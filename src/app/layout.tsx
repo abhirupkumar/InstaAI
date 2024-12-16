@@ -35,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={novaSquare.className}
+        className={`${novaSquare.className} max-w-[2500px]`}
       >
         <ThemeProvider
           attribute="class"

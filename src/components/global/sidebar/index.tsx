@@ -10,6 +10,7 @@ import { HelpDuoToneWhite } from '@/icons'
 import { SubscriptionPlan } from '../subscription-plan'
 import UpgradeCard from './upgrade'
 import Image from 'next/image'
+import Link from 'next/link'
 
 type Props = {
     slug: string
@@ -49,20 +50,22 @@ const Sidebar = ({ slug }: Props) => {
        backdrop-blur-3xl"
             >
                 <div className="flex gap-x-2 items-center p-5 justify-center">
-                    <Image
-                        src="/images/logo-white.svg"
-                        alt="Proxy Logo"
-                        height={100}
-                        width={200}
-                        className="block dark:hidden"
-                    />
-                    <Image
-                        src="/images/logo-dark.svg"
-                        alt="Proxy Logo"
-                        height={100}
-                        width={200}
-                        className="hidden dark:block"
-                    />
+                    <Link href="/">
+                        <Image
+                            src="/images/logo-white.svg"
+                            alt="Proxy Logo"
+                            height={100}
+                            width={200}
+                            className="block dark:hidden"
+                        />
+                        <Image
+                            src="/images/logo-dark.svg"
+                            alt="Proxy Logo"
+                            height={100}
+                            width={200}
+                            className="hidden dark:block"
+                        />
+                    </Link>
                 </div>
                 <div className="flex flex-col py-3">
                     <Items
