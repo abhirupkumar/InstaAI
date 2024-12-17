@@ -24,8 +24,8 @@ const Trigger = ({ id }: Props) => {
         return (
             <div className="flex flex-col gap-y-6 items-center">
                 <ActiveTrigger
+                    id={data.data.trigger[0].id}
                     type={data.data.trigger[0].type}
-                    keywords={data.data.keywords}
                 />
 
                 {data?.data?.trigger.length > 1 && (
@@ -40,8 +40,8 @@ const Trigger = ({ id }: Props) => {
                             />
                         </div>
                         <ActiveTrigger
+                            id={data.data.trigger[1].id}
                             type={data.data.trigger[1].type}
-                            keywords={data.data.keywords}
                         />
                     </>
                 )}

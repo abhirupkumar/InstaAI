@@ -155,6 +155,12 @@ export const addKeyWord = async (automationId: string, keyword: string) => {
     })
 }
 
+export const deleteTriggerQuery = async (id: string) => {
+    return client.trigger.delete({
+        where: { id },
+    })
+}
+
 export const deleteKeywordQuery = async (id: string) => {
     return client.keyword.delete({
         where: { id },

@@ -5,6 +5,7 @@ import {
   deleteKeyword,
   deleteListener,
   deletePost,
+  deleteTrigger,
   saveKeyword,
   saveListener,
   savePosts,
@@ -26,13 +27,7 @@ export const useCreateAutomation = (id?: string) => {
     'user-automations'
   )
 
-  const { mutate: deleteMutation } = useMutationData(
-    ['delete-automation'],
-    () => deleteAutomations(id),
-    'user-automations'
-  )
-
-  return { isPending, mutate, deleteMutation }
+  return { isPending, mutate }
 }
 
 export const useEditAutomation = (automationId: string) => {
@@ -47,6 +42,13 @@ export const useEditAutomation = (automationId: string) => {
       updateAutomationName(automationId, { name: data.name }),
     'automation-info',
     disableEdit
+  )
+
+  const { mutate: deleteMutation } = useMutationData(
+    ['delete-automation'],
+    (data: { name: string }) =>
+      deleteAutomations(automationId),
+    'automation-info',
   )
 
   useEffect(() => {
@@ -74,6 +76,7 @@ export const useEditAutomation = (automationId: string) => {
     disableEdit,
     inputRef,
     isPending,
+    deleteMutation
   }
 }
 
@@ -121,9 +124,14 @@ export const useTriggers = (id: string) => {
     (data: { types: string[] }) => saveTrigger(id, data.types),
     'automation-info'
   )
+  const { mutate: deleteMutation } = useMutationData(
+    ['delete-trigger'],
+    () => deleteTrigger(id),
+    'automation-info'
+  )
 
   const onSaveTrigger = () => mutate({ types })
-  return { types, onSetTrigger, onSaveTrigger, isPending }
+  return { types, onSetTrigger, onSaveTrigger, isPending, deleteMutation }
 }
 
 export const useKeywords = (id: string) => {

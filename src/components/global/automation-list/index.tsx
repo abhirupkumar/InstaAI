@@ -8,12 +8,14 @@ import { Button } from '@/components/ui/button'
 import { useQueryAutomations } from '@/hooks/user-queries'
 import CreateAutomation from '../create-automation'
 import { useMutationDataState } from '@/hooks/use-mutation-data'
+import DeleteDialog from '../delete-dialog'
+import { useEditAutomation } from '@/hooks/use-automations'
+import { deleteAutomations } from '@/actions/automations'
 
 type Props = {}
 
 const AutomationList = (props: Props) => {
     const { data } = useQueryAutomations()
-
     const { latestVariable } = useMutationDataState(['create-automation'])
     const { pathname } = usePaths()
 
@@ -39,12 +41,11 @@ const AutomationList = (props: Props) => {
     return (
         <div className="flex flex-col gap-y-3">
             {optimisticUiData && optimisticUiData.data.length && optimisticUiData.data.map((automation) => (
-                <Link
-                    href={`${pathname}/${automation.id}`}
+                <div
                     key={automation.id}
                     className="bg-secondary hover:opacity-80 transition duration-100 rounded-xl p-5 border-[1px] flex border-[#545454]"
                 >
-                    <div className="flex flex-col flex-1 items-start">
+                    <Link href={`${pathname}/${automation.id}`} className="flex flex-col flex-1 items-start">
                         <h2 className="text-xl font-semibold">{automation.name}</h2>
                         <p className="text-muted-foreground text-sm font-light mb-2">
                             This is from the comment
@@ -79,7 +80,7 @@ const AutomationList = (props: Props) => {
                                 <p className="text-sm text-black/40 dark:text-[#bfc0c3]">No Keywords</p>
                             </div>
                         )}
-                    </div>
+                    </Link>
                     <div className="flex flex-col justify-between">
                         <p className="capitalize text-sm font-light text-[#9B9CA0]">
                             {getMonth(automation.createdAt.getUTCMonth() + 1)}{' '}
@@ -88,11 +89,11 @@ const AutomationList = (props: Props) => {
                                 : `${automation.createdAt.getUTCDate()}th`}{' '}
                             {automation.createdAt.getUTCFullYear()}
                         </p>
+                        <DeleteDialog onYes={() => deleteAutomations(automation.id)} buttonText='Delete' dialogText='Are you Sure?' />
 
                         {automation.listener?.listener === 'PROXYAI' ? (
                             <GradientButton
                                 type="BUTTON"
-                                className="w-full !bg-background-80 text-white hover:!bg-background-80"
                             >
                                 Proxy AI
                             </GradientButton>
@@ -102,7 +103,7 @@ const AutomationList = (props: Props) => {
                             </Button>
                         )}
                     </div>
-                </Link>
+                </div>
             ))}
         </div>
     )

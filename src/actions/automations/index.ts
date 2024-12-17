@@ -12,6 +12,7 @@ import {
     deleteKeywordQuery,
     deleteListenerQuery,
     deletePostQuery,
+    deleteTriggerQuery,
     findAutomation,
     getAutomations,
     updateAutomation,
@@ -120,6 +121,17 @@ export const saveTrigger = async (automationId: string, trigger: string[]) => {
         const create = await addTrigger(automationId, trigger)
         if (create) return { status: 200, data: 'Trigger saved' }
         return { status: 404, data: 'Cannot save trigger' }
+    } catch (error) {
+        return { status: 500, data: 'Oops! something went wrong' }
+    }
+}
+
+export const deleteTrigger = async (id: string) => {
+    await onCurrentUser()
+    try {
+        const create = await deleteTriggerQuery(id)
+        if (create) return { status: 200, data: 'Trigger Deleted!' }
+        return { status: 404, data: 'Cannot delete trigger' }
     } catch (error) {
         return { status: 500, data: 'Oops! something went wrong' }
     }
