@@ -10,6 +10,8 @@ import {
     createAutomation,
     deleteAutomation,
     deleteKeywordQuery,
+    deleteListenerQuery,
+    deletePostQuery,
     findAutomation,
     getAutomations,
     updateAutomation,
@@ -98,6 +100,20 @@ export const saveListener = async (
     }
 }
 
+export const deleteListener = async (
+    id: string,
+) => {
+    await onCurrentUser()
+    try {
+        const create = await deleteListenerQuery(id)
+        if (create) return { status: 200, data: 'Listener deleted!' }
+        return { status: 404, data: 'Cant delete listener' }
+    } catch (error) {
+        console.log("error: ", error)
+        return { status: 500, data: 'Oops! something went wrong' }
+    }
+}
+
 export const saveTrigger = async (automationId: string, trigger: string[]) => {
     await onCurrentUser()
     try {
@@ -132,6 +148,21 @@ export const deleteKeyword = async (id: string) => {
                 data: 'Keyword deleted',
             }
         return { status: 404, data: 'Keyword not found' }
+    } catch (error) {
+        return { status: 500, data: 'Oops! something went wrong' }
+    }
+}
+
+export const deletePost = async (id: string) => {
+    await onCurrentUser()
+    try {
+        const deleted = await deletePostQuery(id)
+        if (deleted)
+            return {
+                status: 200,
+                data: 'Post deleted',
+            }
+        return { status: 404, data: 'Post not found' }
     } catch (error) {
         return { status: 500, data: 'Oops! something went wrong' }
     }

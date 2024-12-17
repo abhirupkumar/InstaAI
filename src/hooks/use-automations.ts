@@ -3,6 +3,8 @@ import {
   createAutomations,
   deleteAutomations,
   deleteKeyword,
+  deleteListener,
+  deletePost,
   saveKeyword,
   saveListener,
   savePosts,
@@ -95,8 +97,15 @@ export const useListener = (id: string) => {
     mutate
   )
 
+  const { mutate: deleteMutation } = useMutationData(
+    ['delete-lister'],
+    (data: { prompt: string; reply: string }) =>
+      deleteListener(id),
+    'automation-info'
+  )
+
   const onSetListener = (type: 'PROXYAI' | 'MESSAGE') => setListener(type)
-  return { onSetListener, register, onFormSubmit, listener, isPending }
+  return { onSetListener, register, onFormSubmit, listener, isPending, deleteMutation }
 }
 
 export const useTriggers = (id: string) => {
@@ -143,6 +152,17 @@ export const useKeywords = (id: string) => {
   )
 
   return { keyword, onValueChange, onKeyPress, deleteMutation }
+}
+
+export const usePosts = (id: string) => {
+
+  const { mutate: deleteMutation } = useMutationData(
+    ['delete-post'],
+    (data: { id: string }) => deletePost(data.id),
+    'automation-info'
+  )
+
+  return { deleteMutation }
 }
 
 export const useAutomationPosts = (id: string) => {

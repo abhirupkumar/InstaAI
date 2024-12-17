@@ -7,9 +7,10 @@ type Props = {
     onYes: () => void;
     buttonText: string;
     dialogText: string;
+    className?: string;
 }
 
-export default function DeleteDialog({ onYes, buttonText, dialogText }: Props) {
+export default function DeleteDialog({ onYes, buttonText, dialogText, className }: Props) {
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -21,7 +22,7 @@ export default function DeleteDialog({ onYes, buttonText, dialogText }: Props) {
     }
 
     return (
-        <div>
+        <div className={className || ''}>
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger asChild>
                     <button

@@ -103,6 +103,16 @@ export const addListener = async (
     })
 }
 
+export const deleteListenerQuery = async (
+    id: string,
+) => {
+    return await client.listener.delete({
+        where: {
+            id: id,
+        }
+    })
+}
+
 export const addTrigger = async (automationId: string, trigger: string[]) => {
     if (trigger.length === 2) {
         return await client.automation.update({
@@ -147,6 +157,12 @@ export const addKeyWord = async (automationId: string, keyword: string) => {
 
 export const deleteKeywordQuery = async (id: string) => {
     return client.keyword.delete({
+        where: { id },
+    })
+}
+
+export const deletePostQuery = async (id: string) => {
+    return client.post.delete({
         where: { id },
     })
 }
