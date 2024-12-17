@@ -10,13 +10,13 @@ import CreateAutomation from '../create-automation'
 import { useMutationDataState } from '@/hooks/use-mutation-data'
 import DeleteDialog from '../delete-dialog'
 import { useEditAutomation } from '@/hooks/use-automations'
-import { deleteAutomations } from '@/actions/automations'
+import DeleteAutomationButton from './delete-automation-button'
 
 type Props = {}
 
 const AutomationList = (props: Props) => {
     const { data } = useQueryAutomations()
-    const { latestVariable } = useMutationDataState(['create-automation'])
+    const { latestVariable } = useMutationDataState(['create-automation', 'delete-automation'])
     const { pathname } = usePaths()
 
     const optimisticUiData = useMemo(() => {
@@ -89,7 +89,7 @@ const AutomationList = (props: Props) => {
                                 : `${automation.createdAt.getUTCDate()}th`}{' '}
                             {automation.createdAt.getUTCFullYear()}
                         </p>
-                        <DeleteDialog onYes={() => deleteAutomations(automation.id)} buttonText='Delete' dialogText='Are you Sure?' />
+                        <DeleteAutomationButton id={automation.id} />
 
                         {automation.listener?.listener === 'PROXYAI' ? (
                             <GradientButton
