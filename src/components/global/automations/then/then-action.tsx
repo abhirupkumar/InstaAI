@@ -36,7 +36,7 @@ const ThenAction = ({ id }: Props) => {
                                 key={listener.id}
                                 className={cn(
                                     Listener === listener.type
-                                        ? 'bg-gradient-to-br from-[#3352CC] to-[#1C2D70]'
+                                        ? 'bg-custom-gradient'
                                         : 'bg-secondary',
                                     'p-3 rounded-xl flex flex-col gap-y-2 cursor-pointer hover:opacity-80 transition duration-100'
                                 )}
@@ -54,7 +54,7 @@ const ThenAction = ({ id }: Props) => {
                             key={listener.id}
                             className={cn(
                                 Listener === listener.type
-                                    ? 'bg-gradient-to-br from-[#3352CC] to-[#1C2D70]'
+                                    ? 'bg-custom-gradient'
                                     : 'bg-secondary',
                                 'p-3 rounded-xl flex flex-col gap-y-2 cursor-pointer hover:opacity-80 transition duration-100'
                             )}
@@ -71,7 +71,7 @@ const ThenAction = ({ id }: Props) => {
                     onSubmit={onFormSubmit}
                     className="flex flex-col gap-y-2"
                 >
-                    <Textarea
+                    {/* <Textarea
                         placeholder={
                             Listener === 'PROXYAI'
                                 ? 'Add a prompt that your proxy ai can use...'
@@ -79,13 +79,8 @@ const ThenAction = ({ id }: Props) => {
                         }
                         {...register('prompt')}
                         className="bg-secondary outline-none border-none ring-0 focus:ring-0"
-                    />
-                    <Input
-                        {...register('reply')}
-                        placeholder="Add a reply for comments (Optional)"
-                        className="bg-secondary outline-none border-none ring-0 focus:ring-0"
-                    />
-                    <Button className="bg-gradient-to-br w-full from-[#3352CC] font-medium text-white to-[#1C2D70]">
+                    /> */}
+                    <Button className="bg-custom-gradient w-full font-medium text-white">
                         <Loader state={isPending}>Add listener</Loader>
                     </Button>
                 </form>

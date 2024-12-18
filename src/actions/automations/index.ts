@@ -4,7 +4,6 @@ import { onCurrentUser } from '../user'
 import { findUser } from '../user/queries'
 import {
     addKeyWord,
-    addListener,
     addPost,
     addTrigger,
     createAutomation,
@@ -16,6 +15,7 @@ import {
     findAutomation,
     getAutomations,
     updateAutomation,
+    upsertListener,
 } from './queries'
 
 export const createAutomations = async (id?: string) => {
@@ -88,15 +88,17 @@ export const updateAutomationName = async (
 export const saveListener = async (
     autmationId: string,
     listener: 'PROXYAI' | 'MESSAGE',
-    prompt: string,
-    reply?: string
+    prompt?: string,
+    reply?: string,
+    listnerId?: string
 ) => {
     await onCurrentUser()
     try {
-        const create = await addListener(autmationId, listener, prompt, reply)
-        if (create) return { status: 200, data: 'Listener created' }
+        const create = await upsertListener(autmationId, listener, prompt, reply, listnerId)
+        if (create) return { status: 200, data: 'Listener updated' }
         return { status: 404, data: 'Cant save listener' }
     } catch (error) {
+        console.log(error)
         return { status: 500, data: 'Oops! something went wrong' }
     }
 }

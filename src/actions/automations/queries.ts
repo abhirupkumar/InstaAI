@@ -1,5 +1,6 @@
 'use server'
 
+import { SAMPLE_AI_PROMPT } from '@/constants/prompt'
 import { client } from '@/lib/prisma'
 import { v4 } from 'uuid'
 
@@ -81,12 +82,23 @@ export const updateAutomation = async (
     })
 }
 
-export const addListener = async (
+export const upsertListener = async (
     automationId: string,
     listener: 'PROXYAI' | 'MESSAGE',
-    prompt: string,
-    reply?: string
+    prompt?: string,
+    reply?: string,
+    listnerId?: string
 ) => {
+    if (listnerId) {
+        return await client.listener.update({
+            where: {
+                id: listnerId,
+            },
+            data: {
+                prompt: prompt || '',
+            },
+        })
+    }
     return await client.automation.update({
         where: {
             id: automationId,
@@ -95,7 +107,7 @@ export const addListener = async (
             listener: {
                 create: {
                     listener,
-                    prompt,
+                    prompt: prompt || (listener === 'PROXYAI' ? SAMPLE_AI_PROMPT : 'Hello, Nice to meet you!'),
                     commentReply: reply,
                 },
             },

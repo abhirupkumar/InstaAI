@@ -1,11 +1,15 @@
 'use client'
+
 import { Separator } from '@/components/ui/separator'
 import { useQueryAutomation } from '@/hooks/user-queries'
 import { PlaneBlue, ProxyAi, Warning } from '@/icons'
-import React from 'react'
+import React, { useEffect } from 'react'
 import PostButton from '../post'
 import DeleteDialog from '../../delete-dialog'
 import { useListener } from '@/hooks/use-automations'
+import { Textarea } from '@/components/ui/textarea'
+import { Button } from '@/components/ui/button'
+import Loader from '../../loader'
 
 type Props = {
     id: string
@@ -13,8 +17,22 @@ type Props = {
 
 const ThenNode = ({ id }: Props) => {
     const { data } = useQueryAutomation(id)
-    const { deleteMutation } = useListener(data?.data?.listener?.id || '')
+    const {
+        onSetListener,
+        deleteMutation,
+        listener: Listener,
+        onFormSubmit,
+        register,
+        isPending,
+        reset
+    } = useListener(data?.data?.listener?.id || '')
     const commentTrigger = data?.data?.trigger.find((t) => t.type === 'COMMENT')
+    const [prompt, setPrompt] = React.useState(data?.data?.listener?.prompt || '');
+
+    useEffect(() => {
+        onSetListener(data?.data?.listener?.listener || 'MESSAGE')
+        reset({ prompt: prompt || "", reply: data?.data?.listener?.commentReply || '', listnerId: data?.data?.listener?.id })
+    }, [reset, prompt])
 
     return !data?.data?.listener ? (
         <></>
@@ -33,9 +51,7 @@ const ThenNode = ({ id }: Props) => {
                     <Warning />
                     Then...
                 </div>
-                <div className="flex gap-x-2">
-                    <DeleteDialog useIcon={true} onYes={() => deleteMutation({ id: data.data.listener!.id })} buttonText='Delete' dialogText='Are you Sure?' className="z-20" />
-                </div>
+                <DeleteDialog useIcon={true} onYes={() => deleteMutation({ id: data.data.listener!.id })} buttonText='Delete' dialogText='Are you Sure?' className="z-20" />
             </div>
             <div className="bg-background p-3 rounded-xl flex flex-col gap-y-2">
                 <div className="flex gap-x-2 items-center">
@@ -50,9 +66,25 @@ const ThenNode = ({ id }: Props) => {
                             : 'Let Proxy AI take over'}
                     </p>
                 </div>
-                <p className="font-light text-text-secondary">
-                    {data.data.listener.prompt}
-                </p>
+                <form
+                    onSubmit={onFormSubmit}
+                    className="flex flex-col gap-y-2"
+                >
+                    <Textarea
+                        placeholder={
+                            Listener === 'PROXYAI'
+                                ? 'Add a prompt that your proxy ai can use...'
+                                : 'Add a message you want send to your customers'
+                        }
+                        {...register('prompt')}
+                        defaultValue={prompt}
+                        onChange={(e) => setPrompt(e.target.value)}
+                        className="bg-secondary outline-none border-none ring-0 focus:ring-0 min-h-[300px]"
+                    />
+                    {data?.data?.listener?.prompt && data?.data?.listener?.prompt !== prompt && <Button className="bg-custom-gradient w-full font-medium text-white">
+                        <Loader state={isPending}>Save listener</Loader>
+                    </Button>}
+                </form>
             </div>
             {data.data.posts.length > 0 ? (
                 <></>
