@@ -34,7 +34,7 @@ const ThenNode = ({ id }: Props) => {
                     Then...
                 </div>
                 <div className="flex gap-x-2">
-                    <DeleteDialog onYes={() => deleteMutation({ id: data.data.listener!.id })} buttonText='Delete' dialogText='Are you Sure?' className="z-20" />
+                    <DeleteDialog useIcon={true} onYes={() => deleteMutation({ id: data.data.listener!.id })} buttonText='Delete' dialogText='Are you Sure?' className="z-20" />
                 </div>
             </div>
             <div className="bg-background p-3 rounded-xl flex flex-col gap-y-2">

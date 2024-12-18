@@ -1,16 +1,19 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { DeleteIcon, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 
 type Props = {
     onYes: () => void;
-    buttonText: string;
+    buttonText?: string;
     dialogText: string;
     className?: string;
+    useIcon?: boolean;
 }
 
-export default function DeleteDialog({ onYes, buttonText, dialogText, className }: Props) {
+export default function DeleteDialog({ onYes, buttonText, dialogText, className, useIcon = false }: Props) {
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -25,11 +28,9 @@ export default function DeleteDialog({ onYes, buttonText, dialogText, className 
         <div className={className || ''}>
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger asChild>
-                    <button
-                        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:outline-none"
-                    >
-                        {buttonText}
-                    </button>
+                    <Button size={!useIcon ? 'default' : 'icon'} variant="destructive">
+                        {!useIcon ? buttonText : <Trash2 />}
+                    </Button>
                 </DialogTrigger>
 
                 <DialogContent>

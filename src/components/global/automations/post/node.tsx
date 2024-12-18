@@ -50,7 +50,7 @@ const PostNode = ({ id }: Props) => {
                                     src={post.media}
                                     alt="post image"
                                 />
-                                <DeleteDialog onYes={() => deleteMutation({ id: post.id })} buttonText='Delete' dialogText='Are you Sure?' className="z-20" />
+                                <DeleteDialog useIcon={true} onYes={() => deleteMutation({ id: post.id })} buttonText='Delete' dialogText='Are you Sure?' className="z-20" />
                             </div>
                         ))}
                     </div>
