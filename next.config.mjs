@@ -11,8 +11,7 @@ const nextConfig = {
                 hostname: "scontent.cdninstagram.com"
             },
         ],
-    },
-    reactStrictMode: false
+    }
 }
 
 export default nextConfig
