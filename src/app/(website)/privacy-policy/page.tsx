@@ -10,7 +10,7 @@ export default function PrivacyPolicy() {
                 <div className="prose max-w-none">
                     <p>Last updated: 12/14/2024</p>
 
-                    <p>This Privacy Policy describes how Proxy (the "Site", "we", "us", or "our") collects, uses, and discloses your personal information when you visit, use our services, or make a purchase from http://proxy-akb.vercel.app (the "Site") or otherwise communicate with us (collectively, the "Services"). For purposes of this Privacy Policy, "you" and "your" means you as the user of the Services, whether you are a customer, website visitor, or another individual whose information we have collected pursuant to this Privacy Policy.</p>
+                    <p>This Privacy Policy describes how Proxy (the "Site", "we", "us", or "our") collects, uses, and discloses your personal information when you visit, use our services, or make a purchase from http://proxyai.tech (the "Site") or otherwise communicate with us (collectively, the "Services"). For purposes of this Privacy Policy, "you" and "your" means you as the user of the Services, whether you are a customer, website visitor, or another individual whose information we have collected pursuant to this Privacy Policy.</p>
 
                     <p>Please read this Privacy Policy carefully. By using and accessing any of the Services, you agree to the collection, use, and disclosure of your information as described in this Privacy Policy. If you do not agree to this Privacy Policy, please do not use or access any of the Services.</p>
 
@@ -51,7 +51,7 @@ export default function PrivacyPolicy() {
                     <p>Any information we obtain from third parties will be treated in accordance with this Privacy Policy. We are not responsible or liable for the accuracy of the information provided to us by third parties and are not responsible for any third party's policies or practices. For more information, see the section below, Third Party Websites and Links.</p>
 
                     <h2 className="text-2xl font-semibold mt-6 mb-4">Contact</h2>
-                    <p>Should you have any questions about our privacy practices or this Privacy Policy, or if you would like to exercise any of the rights available to you, please email us at proxyai555@gmail.com or contact us at Kolkata, West Bengal, India, Kolkata, WB, India.</p>
+                    <p>Should you have any questions about our privacy practices or this Privacy Policy, or if you would like to exercise any of the rights available to you, please email us at info@proxyai.tech or contact us at Kolkata, West Bengal, India, Kolkata, WB, India.</p>
                 </div>
             </main>
             <Footer />
