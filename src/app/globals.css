@@ -148,7 +148,7 @@
   background-repeat: no-repeat;
 }
 
-.cl-userButtonPopoverCard {
+/* .cl-userButtonPopoverCard {
   z-index: 99999 !important;
   cursor: pointer;
 }
@@ -159,7 +159,7 @@
 
 .cl-navbar>div:nth-child(3) {
   display: none !important;
-}
+} */
 
 .cl-footer>div:nth-child(2) {
   display: none !important;
