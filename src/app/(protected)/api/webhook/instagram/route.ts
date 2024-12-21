@@ -71,7 +71,7 @@ export async function POST(req: NextRequest) {
                     if (
                         automation.listener &&
                         automation.listener.listener === 'PROXYAI' &&
-                        automation.User?.subscription?.plan === 'PRO'
+                        automation.User?.subscription?.plan !== 'FREE'
                     ) {
                         const proxy_ai_message = await groq.chat.completions.create({
                             model: 'llama-3.3-70b-versatile',
@@ -182,7 +182,7 @@ export async function POST(req: NextRequest) {
                         }
                         if (
                             automation.listener.listener === 'PROXYAI' &&
-                            automation.User?.subscription?.plan === 'PRO'
+                            automation.User?.subscription?.plan !== 'FREE'
                         ) {
                             const proxy_ai_message = await groq.chat.completions.create({
                                 model: 'llama-3.3-70b-versatile',
@@ -247,8 +247,7 @@ export async function POST(req: NextRequest) {
                 const automation = await findAutomation(customer_history.automationId!)
 
                 if (
-                    automation?.User?.subscription?.plan === 'PRO' &&
-                    automation.listener?.listener === 'PROXYAI'
+                    automation && automation?.User?.subscription?.plan !== 'FREE' && automation.listener?.listener === 'PROXYAI'
                 ) {
                     const proxy_ai_message = await groq.chat.completions.create({
                         model: 'llama-3.3-70b-versatile',

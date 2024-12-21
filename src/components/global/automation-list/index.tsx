@@ -99,7 +99,7 @@ const AutomationList = (props: Props) => {
                             </GradientButton>
                         ) : (
                             <Button>
-                                Standard
+                                Free
                             </Button>
                         )}
                     </div>

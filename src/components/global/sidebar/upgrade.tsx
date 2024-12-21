@@ -1,7 +1,12 @@
 import React from 'react'
-import PaymentButton from '../payment-button'
+import { Button, buttonVariants } from '@/components/ui/button'
+import { CreditCardIcon } from 'lucide-react'
+import Link from 'next/link'
+import { cn } from '@/lib/utils'
 
-type Props = {}
+type Props = {
+    slug: String;
+}
 
 const UpgradeCard = (props: Props) => {
     return (
@@ -20,7 +25,19 @@ const UpgradeCard = (props: Props) => {
             <p className="text-[#9B9CA0] font-light text-sm">
                 Unlock all features <br /> including AI and more
             </p>
-            <PaymentButton />
+            <Link
+                href={process.env.NEXT_PUBLIC_HOST_URL! + '/dashboard/' + props.slug + "/settings"}
+                className={cn(buttonVariants({
+                    size: 'lg',
+                }),
+                    `bg-custom-gradient
+     text-white 
+     rounded-full 
+    font-bold`)}
+            >
+                <CreditCardIcon />
+                Upgrade
+            </Link>
         </div>
     )
 }

@@ -31,8 +31,10 @@ model Subscription {
     userId     String?           @unique @db.Uuid
     createdAt  DateTime          @default(now())
     plan       SUBSCRIPTION_PLAN @default(FREE)
+    planId     String?
     updatedAt  DateTime          @default(now())
     customerId String?           @unique
+    status     String?
 }
 
 model Integrations {
@@ -108,7 +110,9 @@ model Keyword {
 }
 
 enum SUBSCRIPTION_PLAN {
+    STANDARD
     PRO
+    ULTIMATE
     FREE
 }
 

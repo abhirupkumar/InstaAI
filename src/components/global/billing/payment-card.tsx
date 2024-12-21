@@ -1,16 +1,75 @@
+"use client";
+
 import { Button } from '@/components/ui/button'
 import { PLANS } from '@/constants/pages'
+import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils'
-import { CircleCheck } from 'lucide-react'
-import React from 'react'
+import { CircleCheck, Loader2 } from 'lucide-react'
+import React, { useState } from 'react'
+import { toast } from 'sonner';
 
 type Props = {
     label: string
-    current: 'PRO' | 'FREE'
+    current: 'STANDARD' | 'PRO' | 'ULTIMATE' | 'FREE'
+    price?: number
+    planId?: string
     landing?: boolean
+    customerId: string | null | undefined
 }
 
-const PaymentCard = ({ current, label, landing }: Props) => {
+const PaymentCard = ({ current, label, landing, price, planId, customerId }: Props) => {
+    const [loading, setLoading] = useState("");
+
+    const handleSubscription = async () => {
+        setLoading(label);
+        const apiUrl = '/api/create-subscription';
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    planId,
+                }),
+            });
+
+            const { subscriptionId, razorpayKey } = await response.json();
+
+            if (!subscriptionId) {
+                toast('Error', {
+                    description: "Couldn't create your subscription. Please try again.",
+                })
+                setLoading("");
+                return;
+            }
+
+            // Razorpay Checkout options
+            const options = {
+                key: razorpayKey,
+                subscription_id: subscriptionId,
+                name: 'Proxy',
+                description: 'Thank you for subscribing!',
+                handler: function (response: any) {
+                    console.log('Subscription Details:', response);
+                },
+                theme: {
+                    color: '#F37254',
+                },
+            };
+
+            const razorpay = new (window as any).Razorpay(options);
+            razorpay.open();
+        } catch (error) {
+            console.error('Subscription error:', error);
+            toast('Error', {
+                description: 'An error occurred. Please try again.',
+            })
+        } finally {
+            setLoading("");
+        }
+    }
+
     return (
         <div
             className={cn(
@@ -28,14 +87,14 @@ const PaymentCard = ({ current, label, landing }: Props) => {
             >
                 {landing ? (
                     <h2 className="text-2xl">
-                        {label === 'PRO' && 'Premium Plan'}
+                        {label !== 'FREE' && 'Premium Plan'}
                         {label === 'FREE' && 'Standard'}
                     </h2>
                 ) : (
                     <h2 className="text-2xl">
                         {label === current
                             ? 'Your Current Plan'
-                            : current === 'PRO'
+                            : current !== 'FREE'
                                 ? 'Downgrade'
                                 : 'Upgrade'}
                     </h2>
@@ -43,22 +102,22 @@ const PaymentCard = ({ current, label, landing }: Props) => {
                 <p className="text-text-secondary text-sm mb-2">
                     This is what your plan covers for automations and Ai features
                 </p>
-                {label === 'PRO' ? (
+                {label !== 'FREE' ? (
                     <span className="bg-custom-gradient text-3xl font-bold bg-clip-text text-transparent">
-                        Proxy AI
+                        {label}
                     </span>
                 ) : (
-                    <p className="font-bold mt-2 text-text-secondary">Standard</p>
+                    <p className="font-bold mt-2 text-text-secondary">Free</p>
                 )}
-                {label === 'PRO' ? (
+                {label !== 'FREE' ? (
                     <p className="mb-2">
-                        <b className="text-xl">$99</b>/month
+                        <b className="text-xl">₹ {price}</b>/month
                     </p>
                 ) : (
-                    <p className="text-xl mb-2">Free</p>
+                    <p className="text-xl mb-2">₹ 0</p>
                 )}
 
-                {PLANS[label === 'PRO' ? 1 : 0].features.map((i) => (
+                {PLANS[label !== 'FREE' ? 1 : 0].features.map((i) => (
                     <p
                         key={i}
                         className="mt-2 text-muted-foreground flex gap-2 "
@@ -72,14 +131,14 @@ const PaymentCard = ({ current, label, landing }: Props) => {
                     <Button
                         className={cn(
                             'rounded-full mt-5',
-                            label === 'PRO'
+                            label !== 'FREE'
                                 ? 'bg-custom-gradient text-white'
                                 : 'bg-background-80 text-white hover:text-background-80'
                         )}
                     >
                         {label === current
                             ? 'Get Started'
-                            : current === 'PRO'
+                            : current !== 'FREE'
                                 ? 'Free'
                                 : 'Get Started'}
                     </Button>
@@ -87,12 +146,12 @@ const PaymentCard = ({ current, label, landing }: Props) => {
                     <Button
                         className="rounded-full mt-5"
                         disabled={label === current}
+                        onClick={handleSubscription}
                     >
                         {label === current
                             ? 'Active'
-                            : current === 'PRO'
-                                ? 'Downgrade'
-                                : 'Upgrade'}
+                            : 'Upgrade'}
+                        {loading == label && <Loader2 className='h-4 w-5 animate-spin' />}
                     </Button>
                 )}
             </div>

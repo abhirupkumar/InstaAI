@@ -107,7 +107,7 @@ dark:bg-black bg-opacity-90 bg-clip-padding backdrop-filter backdrop--blur__safa
                     </div>
                     <SubscriptionPlan type="FREE">
                         <div className="flex-1 flex flex-col justify-end">
-                            <UpgradeCard />
+                            <UpgradeCard slug={slug} />
                         </div>
                     </SubscriptionPlan>
                 </div>
