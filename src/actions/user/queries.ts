@@ -1,11 +1,11 @@
 
 'use server'
 
-import { PLANS } from '@/constants/pages'
 import { client } from '@/lib/prisma'
+import { razorpay } from '@/lib/razorpay'
 
 export const findUser = async (clerkId: string) => {
-    return await client.user.findUnique({
+    const userData = await client.user.findUnique({
         where: {
             clerkId,
         },
@@ -21,6 +21,19 @@ export const findUser = async (clerkId: string) => {
             },
         },
     })
+
+    if (!userData) return userData;
+    if (userData?.subscription?.plan == 'FREE' || !userData?.subscription?.subscriptionId) return {
+        ...userData,
+        isSubscribed: false,
+    };
+
+    const subscription = await razorpay.subscriptions.fetch(userData?.subscription?.subscriptionId);
+
+    return {
+        ...userData,
+        isSubscribed: subscription.status === 'active',
+    }
 }
 
 export const findUserFromSubscriptionId = async (subscriptionId: string) => {
@@ -56,7 +69,7 @@ export const createUser = async (
 
 export const updateSubscription = async (
     clerkId: string,
-    props: { subscriptionId?: string; plan?: 'FREE' | 'STANDARD' | 'PRO' | 'ULTIMATE', planId?: string, status: 'ACTIVE' | 'PENDING' | 'CANCELED' | 'INCOMPLETE' | 'EXPIRED' }
+    props: { subscriptionId?: string; plan?: 'FREE' | 'STANDARD' | 'PRO' | 'ULTIMATE', planId?: string }
 ) => {
     return await client.user.update({
         where: {

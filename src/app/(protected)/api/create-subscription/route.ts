@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
             customer_notify: 1, // Notify customer via email
         });
         const plan = PLANS.find((p) => p.planId === planId)?.name as "FREE" | "STANDARD" | "PRO" | "ULTIMATE";
-        await updateSubscription(user.id, { subscriptionId: subscription.id, plan: plan, planId: planId, status: 'PENDING' });
+        await updateSubscription(user.id, { subscriptionId: subscription.id });
 
         return NextResponse.json({
             subscriptionId: subscription.id,

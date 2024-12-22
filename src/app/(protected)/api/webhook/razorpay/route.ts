@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
 
             case 'subscription.upgraded':
                 console.log('Subscription upgraded:', event.payload.subscription);
-                const updatedSubscription = await updateSubscription(subscribedUser.userId, { subscriptionId: event.payload.subscription.entity.id, plan, planId, status: 'ACTIVE' });
+                const updatedSubscription = await updateSubscription(subscribedUser.userId, { subscriptionId: event.payload.subscription.entity.id, plan, planId });
                 if (!updatedSubscription) {
                     return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
                 }
@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
 
             case 'subscription.activated':
                 console.log('Subscription activated:', event.payload.subscription);
-                const activeSubscription = await updateSubscription(subscribedUser.userId, { subscriptionId: event.payload.subscription.entity.id, plan, planId, status: 'ACTIVE' });
+                const activeSubscription = await updateSubscription(subscribedUser.userId, { subscriptionId: event.payload.subscription.entity.id, plan, planId });
                 if (!activeSubscription) {
                     return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
                 }
@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
 
             case 'subscription.expired':
                 console.log('Subscription expired:', event.payload.subscription);
-                const expiredSubscription = await updateSubscription(subscribedUser.userId, { subscriptionId: event.payload.subscription.entity.id, plan, planId, status: 'EXPIRED' });
+                const expiredSubscription = await updateSubscription(subscribedUser.userId, { subscriptionId: event.payload.subscription.entity.id, plan, planId });
                 if (!expiredSubscription) {
                     return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
                 }
