@@ -86,6 +86,7 @@ export const onSubscribe = async (session_id: string) => {
             const subscribed = await updateSubscription(user.id, {
                 subscriptionId: session.customer as string,
                 plan: 'PRO',
+                status: 'ACTIVE',
             })
 
             if (subscribed) return { status: 200 }

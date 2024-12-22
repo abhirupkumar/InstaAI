@@ -26,15 +26,15 @@ model User {
 }
 
 model Subscription {
-    id             String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-    User           User?             @relation(fields: [userId], references: [id], onDelete: Cascade)
-    userId         String?           @unique @db.Uuid
-    createdAt      DateTime          @default(now())
-    plan           SUBSCRIPTION_PLAN @default(FREE)
+    id             String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+    User           User?               @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId         String?             @unique @db.Uuid
+    createdAt      DateTime            @default(now())
+    plan           SUBSCRIPTION_PLAN   @default(FREE)
     planId         String?
-    updatedAt      DateTime          @default(now())
-    subscriptionId String?           @unique
-    status         String?
+    updatedAt      DateTime            @default(now())
+    subscriptionId String?             @unique
+    status         SUBSCRIPTION_STATUS @default(INCOMPLETE)
 }
 
 model Integrations {
@@ -114,6 +114,14 @@ enum SUBSCRIPTION_PLAN {
     PRO
     ULTIMATE
     FREE
+}
+
+enum SUBSCRIPTION_STATUS {
+    ACTIVE
+    PENDING
+    CANCELED
+    INCOMPLETE
+    EXPIRED
 }
 
 enum INTEGRATIONS {

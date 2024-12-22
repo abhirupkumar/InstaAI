@@ -1,6 +1,7 @@
 
 'use server'
 
+import { PLANS } from '@/constants/pages'
 import { client } from '@/lib/prisma'
 
 export const findUser = async (clerkId: string) => {
@@ -19,6 +20,14 @@ export const findUser = async (clerkId: string) => {
                 },
             },
         },
+    })
+}
+
+export const findUserFromSubscriptionId = async (subscriptionId: string) => {
+    return await client.subscription.findUnique({
+        where: {
+            subscriptionId,
+        }
     })
 }
 
@@ -47,7 +56,7 @@ export const createUser = async (
 
 export const updateSubscription = async (
     clerkId: string,
-    props: { subscriptionId?: string; plan?: 'PRO' | 'FREE' }
+    props: { subscriptionId?: string; plan?: 'FREE' | 'STANDARD' | 'PRO' | 'ULTIMATE', planId?: string, status: 'ACTIVE' | 'PENDING' | 'CANCELED' | 'INCOMPLETE' | 'EXPIRED' }
 ) => {
     return await client.user.update({
         where: {

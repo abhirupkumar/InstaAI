@@ -1,7 +1,8 @@
 import { razorpay } from '@/lib/razorpay';
-import { currentUser } from '@clerk/nextjs/server'
 import { NextRequest, NextResponse } from 'next/server'
 import crypto from 'crypto';
+import { findUserFromSubscriptionId, updateSubscription } from '@/actions/user/queries';
+import { PLANS } from '@/constants/pages';
 
 export async function POST(req: NextRequest) {
 
@@ -23,6 +24,18 @@ export async function POST(req: NextRequest) {
 
         event = request;
 
+        if (!event.payload.subscription || !event.payload.subscription.entity) {
+            return NextResponse.json({ error: 'Invalid subscription' }, { status: 402 });
+        }
+
+        const subscribedUser = await findUserFromSubscriptionId(event.payload.subscription.entity.id);
+        if (!subscribedUser || !subscribedUser.userId) {
+            return NextResponse.json({ error: 'Invalid subscription' }, { status: 403 });
+        }
+
+        const planId = event.payload.subscription.entity.plan_id;
+        const plan = PLANS.find((p) => p.planId === planId)?.name as "FREE" | "STANDARD" | "PRO" | "ULTIMATE";
+
         switch (event.event) {
             case 'subscription.created':
                 // Handle subscription creation
@@ -30,18 +43,27 @@ export async function POST(req: NextRequest) {
                 break;
 
             case 'subscription.upgraded':
-                // Handle subscription upgrade
                 console.log('Subscription upgraded:', event.payload.subscription);
+                const updatedSubscription = await updateSubscription(subscribedUser.userId, { subscriptionId: event.payload.subscription.entity.id, plan, planId, status: 'ACTIVE' });
+                if (!updatedSubscription) {
+                    return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
+                }
                 break;
 
             case 'subscription.activated':
-                // Handle subscription activation
                 console.log('Subscription activated:', event.payload.subscription);
+                const activeSubscription = await updateSubscription(subscribedUser.userId, { subscriptionId: event.payload.subscription.entity.id, plan, planId, status: 'ACTIVE' });
+                if (!activeSubscription) {
+                    return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
+                }
                 break;
 
             case 'subscription.expired':
-                // Handle subscription expired
                 console.log('Subscription expired:', event.payload.subscription);
+                const expiredSubscription = await updateSubscription(subscribedUser.userId, { subscriptionId: event.payload.subscription.entity.id, plan, planId, status: 'EXPIRED' });
+                if (!expiredSubscription) {
+                    return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
+                }
                 break;
 
             default:
