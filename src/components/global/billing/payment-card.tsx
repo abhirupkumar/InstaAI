@@ -14,12 +14,11 @@ type Props = {
     planId?: string | null
     landing?: boolean
     subscriptionId: string | null | undefined
-    key?: number
     features: string[]
     status: boolean
 }
 
-const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, key, features, status }: Props) => {
+const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, features, status }: Props) => {
     const [loading, setLoading] = useState("");
 
     const handleSubscription = async () => {
@@ -35,9 +34,8 @@ const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, k
                     planId,
                 }),
             });
-            const user = await onCurrentUser();
 
-            const { subscriptionId, razorpayKey } = await response.json();
+            const { subscriptionId, razorpayKey, userId } = await response.json();
 
             if (!subscriptionId) {
                 toast('Error', {
@@ -60,7 +58,7 @@ const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, k
                     color: '#F37254',
                 },
                 notes: {
-                    usetId: user.id,
+                    userId: userId,
                 }
             };
 
@@ -78,7 +76,6 @@ const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, k
 
     return (
         <div
-            key={key}
             className={cn(
                 label !== current
                     ? 'bg-in-active'
