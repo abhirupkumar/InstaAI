@@ -33,11 +33,12 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: 'Invalid plan' }, { status: 400 });
         }
         const clerkId = event.payload.subscription.notes.userId;
+        console.log('Received event:', event.event, 'for clerkId:', clerkId, 'with plan:', plan, 'and planId:', planId);
 
         switch (event.event) {
             case 'subscription.upgraded':
                 console.log('Subscription upgraded: ', event.payload.subscription);
-                const updatedSubscription = await updateSubscription(clerkId, { subscriptionId: event.payload.subscription.entity.id, plan, planId });
+                const updatedSubscription = await updateSubscription(clerkId, { subscriptionId: event.payload.subscription.entity.id as string, plan, planId: planId as string });
                 if (!updatedSubscription) {
                     return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
                 }
@@ -45,7 +46,7 @@ export async function POST(req: NextRequest) {
 
             case 'subscription.activated':
                 console.log('Subscription activated: ', event.payload.subscription);
-                const activeSubscription = await updateSubscription(clerkId, { subscriptionId: event.payload.subscription.entity.id, plan, planId });
+                const activeSubscription = await updateSubscription(clerkId, { subscriptionId: event.payload.subscription.entity.id as string, plan, planId: planId as string });
                 if (!activeSubscription) {
                     return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
                 }
@@ -53,7 +54,7 @@ export async function POST(req: NextRequest) {
 
             case 'subscription.expired':
                 console.log('Subscription expired: ', event.payload.subscription);
-                const expiredSubscription = await updateSubscription(clerkId, { subscriptionId: event.payload.subscription.entity.id, plan, planId });
+                const expiredSubscription = await updateSubscription(clerkId, { subscriptionId: event.payload.subscription.entity.id as string, plan, planId: planId as string });
                 if (!expiredSubscription) {
                     return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
                 }
