@@ -58,6 +58,7 @@ export async function POST(req: NextRequest) {
 
             default:
                 console.log('Unhandled event type:', event.event);
+                NextResponse.json({ status: 404 });
         }
         return NextResponse.json({ status: 200 });
 
@@ -66,5 +67,5 @@ export async function POST(req: NextRequest) {
     }
 
 
-    return NextResponse.json({ status: 404 })
+    return NextResponse.json({ status: 405 })
 }
