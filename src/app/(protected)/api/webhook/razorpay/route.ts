@@ -23,13 +23,13 @@ export async function POST(req: NextRequest) {
 
         event = request;
 
-        if (!event.payload.subscription || !event.payload.subscription.entity || !event.payload.notes.userId) {
+        if (!event.payload.subscription || !event.payload.subscription.entity || !event.payload.subscription.entity.notes.userId) {
             return NextResponse.json({ error: 'Invalid subscription' }, { status: 402 });
         }
 
         const planId = event.payload.subscription.entity.plan_id;
         const plan = PLANS.find((p) => p.planId === planId)?.name as "FREE" | "STANDARD" | "PRO" | "ULTIMATE";
-        const userId = event.payload.subscription.notes.userId;
+        const userId = event.payload.subscription.entity.notes.userId;
 
         switch (event.event) {
             case 'subscription.upgraded':
