@@ -12,12 +12,14 @@ type Props = {
     label: string
     current: 'STANDARD' | 'PRO' | 'ULTIMATE' | 'FREE'
     price?: number
-    planId?: string
+    planId?: string | null
     landing?: boolean
     customerId: string | null | undefined
+    key?: number
+    features: string[]
 }
 
-const PaymentCard = ({ current, label, landing, price, planId, customerId }: Props) => {
+const PaymentCard = ({ current, label, landing, price, planId, customerId, key, features }: Props) => {
     const [loading, setLoading] = useState("");
 
     const handleSubscription = async () => {
@@ -72,6 +74,7 @@ const PaymentCard = ({ current, label, landing, price, planId, customerId }: Pro
 
     return (
         <div
+            key={key}
             className={cn(
                 label !== current
                     ? 'bg-in-active'
@@ -117,13 +120,13 @@ const PaymentCard = ({ current, label, landing, price, planId, customerId }: Pro
                     <p className="text-xl mb-2">₹ 0</p>
                 )}
 
-                {PLANS[label !== 'FREE' ? 1 : 0].features.map((i) => (
+                {features.map((feature, index) => (
                     <p
-                        key={i}
+                        key={index}
                         className="mt-2 text-muted-foreground flex gap-2 "
                     >
                         <CircleCheck className="text-indigo-500" />
-                        {i}
+                        {feature}
                     </p>
                 ))}
 

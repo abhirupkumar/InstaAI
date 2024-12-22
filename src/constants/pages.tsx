@@ -27,27 +27,54 @@ export const PAGE_ICON: Props = {
 
 export const PLANS = [
     {
-        name: 'Free Plan',
+        name: 'FREE',
         description: 'Perfect for getting started',
-        price: '$0',
+        price: 0,
         features: [
             'Boost engagement with target responses',
             'Automate comment replies to enhance audience interaction',
             'Turn followers into customers with targeted messaging',
         ],
+        planId: null,
         cta: 'Get Started',
     },
     {
-        name: 'Proxy AI Plan',
-        description: 'Advanced features for power users',
-        price: '$99',
+        name: 'STANDARD',
+        description: 'Standard features for users',
+        price: 2999,
         features: [
             'All features from Free Plan',
+            '2000 chats per month',
             'AI-powered response generation',
             'Advanced analytics and insights',
-            'Priority customer support',
-            'Custom branding options',
         ],
+        planId: 'plan_PZX6I65iuz8fnA',
+        cta: 'Upgrade Now',
+    },
+    {
+        name: 'PRO',
+        description: 'Advanced features for pro users',
+        price: 6999,
+        features: [
+            'All features from Free Plan',
+            '8000 chats per month',
+            'AI-powered response generation',
+            'Advanced analytics and insights',
+        ],
+        planId: 'plan_PZX6izDdD7rJOF',
+        cta: 'Upgrade Now',
+    },
+    {
+        name: 'ULTIMATE',
+        description: 'Ultimate features for power users',
+        price: 14499,
+        features: [
+            'All features from Free Plan',
+            'Unlimited chats per month',
+            'AI-powered response generation',
+            'Advanced analytics and insights',
+        ],
+        planId: 'plan_PZX736UKg4oApf',
         cta: 'Upgrade Now',
     },
 ]
