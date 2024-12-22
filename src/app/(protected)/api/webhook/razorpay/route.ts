@@ -29,6 +29,9 @@ export async function POST(req: NextRequest) {
 
         const planId = event.payload.subscription.entity.plan_id;
         const plan = PLANS.find((p) => p.planId === planId)?.name as "FREE" | "STANDARD" | "PRO" | "ULTIMATE";
+        if (!plan) {
+            return NextResponse.json({ error: 'Invalid plan' }, { status: 400 });
+        }
         const clerkId = event.payload.subscription.notes.userId;
 
         switch (event.event) {
@@ -38,7 +41,7 @@ export async function POST(req: NextRequest) {
                 if (!updatedSubscription) {
                     return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
                 }
-                return NextResponse.json({ clerkId, subscription: event.payload.subscription, event: event.event }, { status: 201 });
+                return NextResponse.json({ clerkId, subscription: event.payload.subscription, event: event.event }, { status: 301 });
 
             case 'subscription.activated':
                 console.log('Subscription activated: ', event.payload.subscription);
@@ -46,7 +49,7 @@ export async function POST(req: NextRequest) {
                 if (!activeSubscription) {
                     return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
                 }
-                return NextResponse.json({ clerkId, subscription: event.payload.subscription, event: event.event }, { status: 202 });
+                return NextResponse.json({ clerkId, subscription: event.payload.subscription, event: event.event }, { status: 302 });
 
             case 'subscription.expired':
                 console.log('Subscription expired: ', event.payload.subscription);
@@ -54,7 +57,7 @@ export async function POST(req: NextRequest) {
                 if (!expiredSubscription) {
                     return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
                 }
-                return NextResponse.json({ clerkId, subscription: event.payload.subscription, event: event.event }, { status: 203 });
+                return NextResponse.json({ clerkId, subscription: event.payload.subscription, event: event.event }, { status: 303 });
 
             default:
                 console.log('Unhandled event type:', event.event);
