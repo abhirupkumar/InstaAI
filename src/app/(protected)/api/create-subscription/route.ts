@@ -1,5 +1,3 @@
-import { updateSubscription } from '@/actions/user/queries';
-import { PLANS } from '@/constants/pages';
 import { razorpay } from '@/lib/razorpay';
 import { currentUser } from '@clerk/nextjs/server'
 import { NextRequest, NextResponse } from 'next/server'
@@ -18,8 +16,6 @@ export async function POST(req: NextRequest) {
             total_count: 12, // Number of billing cycles
             customer_notify: 1, // Notify customer via email
         });
-        const plan = PLANS.find((p) => p.planId === planId)?.name as "FREE" | "STANDARD" | "PRO" | "ULTIMATE";
-        await updateSubscription(user.id, { subscriptionId: subscription.id });
 
         return NextResponse.json({
             subscriptionId: subscription.id,

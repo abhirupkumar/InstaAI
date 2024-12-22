@@ -1,5 +1,6 @@
 "use client";
 
+import { onCurrentUser } from '@/actions/user';
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { CircleCheck, Loader2 } from 'lucide-react'
@@ -34,6 +35,7 @@ const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, k
                     planId,
                 }),
             });
+            const user = await onCurrentUser();
 
             const { subscriptionId, razorpayKey } = await response.json();
 
@@ -57,6 +59,9 @@ const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, k
                 theme: {
                     color: '#F37254',
                 },
+                notes: {
+                    usetId: user.id,
+                }
             };
 
             const razorpay = new (window as any).Razorpay(options);

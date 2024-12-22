@@ -36,14 +36,6 @@ export const findUser = async (clerkId: string) => {
     }
 }
 
-export const findUserFromSubscriptionId = async (subscriptionId: string) => {
-    return await client.subscription.findUnique({
-        where: {
-            subscriptionId,
-        }
-    })
-}
-
 export const createUser = async (
     clerkId: string,
     firstname: string,
