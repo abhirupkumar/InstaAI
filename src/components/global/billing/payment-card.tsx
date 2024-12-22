@@ -14,12 +14,12 @@ type Props = {
     price?: number
     planId?: string | null
     landing?: boolean
-    customerId: string | null | undefined
+    subscriptionId: string | null | undefined
     key?: number
     features: string[]
 }
 
-const PaymentCard = ({ current, label, landing, price, planId, customerId, key, features }: Props) => {
+const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, key, features }: Props) => {
     const [loading, setLoading] = useState("");
 
     const handleSubscription = async () => {

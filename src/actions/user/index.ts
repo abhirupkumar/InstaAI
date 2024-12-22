@@ -84,7 +84,7 @@ export const onSubscribe = async (session_id: string) => {
         const session = await stripe.checkout.sessions.retrieve(session_id)
         if (session) {
             const subscribed = await updateSubscription(user.id, {
-                customerId: session.customer as string,
+                subscriptionId: session.customer as string,
                 plan: 'PRO',
             })
 

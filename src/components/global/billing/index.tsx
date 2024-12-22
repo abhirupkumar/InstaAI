@@ -22,7 +22,7 @@ const Billing = (props: Props) => {
                     label={plan.name}
                     price={plan.price}
                     planId={plan.planId}
-                    customerId={data?.data?.subscription?.customerId}
+                    subscriptionId={data?.data?.subscription?.subscriptionId}
                     features={plan.features}
                 />)}
             </div>
