@@ -1,8 +1,6 @@
 "use client";
 
 import { Button } from '@/components/ui/button'
-import { PLANS } from '@/constants/pages'
-import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils'
 import { CircleCheck, Loader2 } from 'lucide-react'
 import React, { useState } from 'react'
@@ -17,9 +15,10 @@ type Props = {
     subscriptionId: string | null | undefined
     key?: number
     features: string[]
+    status: string | null | undefined
 }
 
-const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, key, features }: Props) => {
+const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, key, features, status }: Props) => {
     const [loading, setLoading] = useState("");
 
     const handleSubscription = async () => {
@@ -152,7 +151,7 @@ const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, k
                         onClick={handleSubscription}
                     >
                         {label === current
-                            ? 'Active'
+                            ? status == 'expired' ? 'Expired' : 'Active'
                             : 'Upgrade'}
                         {loading == label && <Loader2 className='h-4 w-5 animate-spin' />}
                     </Button>

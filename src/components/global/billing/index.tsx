@@ -24,6 +24,7 @@ const Billing = (props: Props) => {
                     planId={plan.planId}
                     subscriptionId={data?.data?.subscription?.subscriptionId}
                     features={plan.features}
+                    status={data?.data?.subscription?.status}
                 />)}
             </div>
         </>
