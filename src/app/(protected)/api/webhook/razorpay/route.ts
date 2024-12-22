@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
 
         event = request;
 
-        if (!event.payload.subscription || !event.payload.subscription.entity || !event.payload.subscription.entity.notes.userId) {
+        if (!event.payload.subscription || !event.payload.subscription.entity || !event.payload.subscription.notes.userId) {
             return NextResponse.json({ error: 'Invalid subscription' }, { status: 402 });
         }
 
