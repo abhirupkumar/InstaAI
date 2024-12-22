@@ -6,8 +6,8 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function POST(req: NextRequest) {
     const user = await currentUser()
     if (!user) return NextResponse.json({ status: 401 });
-    // const dbUser = await findUser(user.id);
-    // if (!dbUser) return NextResponse.json({ status: 401 });
+    const dbUser = await findUser(user.id);
+    if (!dbUser) return NextResponse.json({ status: 401 });
 
     const { planId } = await req.json();
     if (!planId || planId == '') {
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({
             subscriptionId: subscription.id,
             razorpayKey: process.env.RAZORPAY_KEY_ID!,
-            userId: user.id,
+            userId: dbUser.clerkId,
         }, { status: 200 });
     } catch (error) {
         NextResponse.json({ error: 'Failed to create subscription' }, { status: 403 });

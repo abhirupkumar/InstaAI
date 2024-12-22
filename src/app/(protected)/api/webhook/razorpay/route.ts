@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
                 if (!updatedSubscription) {
                     return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
                 }
-                return NextResponse.json({ clerkId, subscription: event.payload.subscription, event: event.event }, { status: 200 });
+                return NextResponse.json({ clerkId, subscription: event.payload.subscription, event: event.event }, { status: 201 });
 
             case 'subscription.activated':
                 console.log('Subscription activated: ', event.payload.subscription);
@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
                 if (!activeSubscription) {
                     return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
                 }
-                return NextResponse.json({ clerkId, subscription: event.payload.subscription, event: event.event }, { status: 200 });
+                return NextResponse.json({ clerkId, subscription: event.payload.subscription, event: event.event }, { status: 202 });
 
             case 'subscription.expired':
                 console.log('Subscription expired: ', event.payload.subscription);
@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
                 if (!expiredSubscription) {
                     return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
                 }
-                return NextResponse.json({ clerkId, subscription: event.payload.subscription, event: event.event }, { status: 200 });
+                return NextResponse.json({ clerkId, subscription: event.payload.subscription, event: event.event }, { status: 203 });
 
             default:
                 console.log('Unhandled event type:', event.event);
