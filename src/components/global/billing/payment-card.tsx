@@ -177,7 +177,7 @@ const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, f
                 ) : (
                     <Button
                         className="rounded-full mt-5"
-                        disabled={label === current || (current !== 'FREE' && status == false)}
+                        disabled={label === current && (current !== 'FREE' && status == false)}
                         onClick={handleSubscription}
                     >
                         {label === current
