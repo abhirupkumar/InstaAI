@@ -22,6 +22,7 @@ export async function POST(req: NextRequest) {
     }
 
     event = request;
+    throw new Error("event: ", event.payload.subscription);
 
     if (!event.payload.subscription || !event.payload.subscription.entity.plan_id || !event.payload.subscription.notes.userId) {
         return NextResponse.json({ error: 'Invalid subscription' }, { status: 402 });
@@ -33,7 +34,6 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: 'Invalid plan' }, { status: 400 });
     }
 
-    throw new Error(event.payload.subscription);
     const clerkId = event.payload.subscription.notes.userId;
 
     switch (event.event) {
