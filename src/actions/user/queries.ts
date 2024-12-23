@@ -63,6 +63,7 @@ export const updateSubscription = async (
     clerkId: string,
     props: { subscriptionId?: string; plan?: 'FREE' | 'STANDARD' | 'PRO' | 'ULTIMATE', planId?: string }
 ) => {
+    console.log(clerkId, props)
     return await client.user.update({
         where: {
             clerkId,

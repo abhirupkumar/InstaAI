@@ -32,10 +32,9 @@ export async function POST(req: NextRequest) {
     if (!plan) {
         return NextResponse.json({ error: 'Invalid plan' }, { status: 400 });
     }
-    const clerkId = event.payload.subscription.notes?.userId;
-    if (!clerkId) {
-        return NextResponse.json({ error: 'Invalid user' }, { status: 400 });
-    }
+
+    throw new Error(event.payload.subscription);
+    const clerkId = event.payload.subscription.notes.userId;
 
     switch (event.event) {
         case 'subscription.upgraded':
@@ -44,7 +43,7 @@ export async function POST(req: NextRequest) {
             // if (!updatedSubscription) {
             //     return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
             // }
-            return NextResponse.json({ clerkId, subscription: event.payload.subscription, event: event.event }, { status: 201 });
+            return NextResponse.json({ status: 201 });
 
         case 'subscription.activated':
             console.log('Subscription activated: ', event.payload.subscription);
@@ -52,7 +51,7 @@ export async function POST(req: NextRequest) {
             if (!activeSubscription) {
                 return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
             }
-            return NextResponse.json({ clerkId, subscription: event.payload.subscription, event: event.event }, { status: 202 });
+            return NextResponse.json({ status: 202 });
 
         case 'subscription.expired':
             console.log('Subscription expired: ', event.payload.subscription);
@@ -60,7 +59,7 @@ export async function POST(req: NextRequest) {
             // if (!expiredSubscription) {
             //     return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
             // }
-            return NextResponse.json({ clerkId, subscription: event.payload.subscription, event: event.event }, { status: 203 });
+            return NextResponse.json({ status: 203 });
 
         default:
             console.log('Unhandled event type:', event.event);
