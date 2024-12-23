@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ status: 201 });
 
         case 'subscription.activated':
-            console.log('Subscription activated: ', event);
+            console.log('Subscription activated: ', event.payload);
             console.log('Processing started at:', new Date().toISOString());
             const activeSubscription = await updateSubscriptionFromId(subscriptionId, { plan, planId: planId as string });
             if (!activeSubscription) {
