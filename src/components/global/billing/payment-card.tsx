@@ -51,6 +51,7 @@ const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, f
                 subscription_id: subscriptionId,
                 name: 'Proxy',
                 description: 'Thank you for subscribing!',
+                image: "/images/logo-white.png",
                 handler: function (response: any) {
                     console.log('Subscription Details:', response);
                 },
