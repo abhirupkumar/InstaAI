@@ -16,6 +16,9 @@ export async function POST(req: NextRequest) {
             plan_id: planId,
             total_count: 12, // Number of billing cycles
             customer_notify: 1, // Notify customer via email
+            notes: {
+                userId: user.id,
+            }
         });
         await updateSubscription(user.id, { subscriptionId: subscription.id });
 
