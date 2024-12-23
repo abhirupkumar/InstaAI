@@ -2,6 +2,7 @@
 
 import { onCurrentUser } from '@/actions/user';
 import { Button } from '@/components/ui/button'
+import { PLANS } from '@/constants/pages';
 import { cn } from '@/lib/utils'
 import { CircleCheck, Loader2 } from 'lucide-react'
 import React, { useState } from 'react'
@@ -16,9 +17,10 @@ type Props = {
     subscriptionId: string | null | undefined
     features: string[]
     status: boolean
+    number: number
 }
 
-const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, features, status }: Props) => {
+const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, features, status, number }: Props) => {
     const [loading, setLoading] = useState("");
 
     const handleSubscription = async () => {
@@ -99,7 +101,7 @@ const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, f
                     <h2 className="text-2xl">
                         {label === current
                             ? 'Your Current Plan'
-                            : current !== 'FREE'
+                            : number < PLANS.findIndex((p) => p.name === current)
                                 ? 'Downgrade'
                                 : 'Upgrade'}
                     </h2>

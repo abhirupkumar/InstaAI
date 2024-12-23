@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ status: 201 });
 
         case 'subscription.activated':
-            console.log('Subscription activated: ', event.payload.subscription);
+            console.log('Subscription activated: ', event);
             const activeSubscription = await updateSubscriptionFromId(subscriptionId, { plan, planId: planId as string });
             if (!activeSubscription) {
                 return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
