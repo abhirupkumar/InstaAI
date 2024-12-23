@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
     if (!plan) {
         return NextResponse.json({ error: 'Invalid plan' }, { status: 400 });
     }
-    const clerkId = event.payload.subscription.entity.notes.userId;
+    const clerkId = event.payload.subscription.notes.userId;
 
     switch (event.event) {
         case 'subscription.upgraded':
