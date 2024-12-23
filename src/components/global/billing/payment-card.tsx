@@ -52,10 +52,38 @@ const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, f
                 key: razorpayKey,
                 subscription_id: subscriptionId,
                 name: 'Proxy',
-                description: 'Thank you for subscribing!',
+                description: 'Use Proxy to automate your Instagram engagement',
                 image: "/images/logo-white.png",
-                handler: function (response: any) {
-                    console.log('Subscription Details:', response);
+                handler: async function (response: any) {
+                    try {
+                        const res = await fetch('/api/verify-payment', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                razorpay_payment_id: response.razorpay_payment_id,
+                                razorpay_subscription_id: response.razorpay_subscription_id,
+                                razorpay_signature: response.razorpay_signature,
+                            }),
+                        });
+
+                        const result = await res.json();
+
+                        if (result.success) {
+                            toast('Success', {
+                                description: 'Payment Successful! It takes a few seconds to activate your subscription.',
+                            });
+                        } else {
+                            toast('Error', {
+                                description: 'Payment Failed! Please Try again.',
+                            });
+                        }
+                    } catch (error) {
+                        toast('Error', {
+                            description: 'Payment Verfication Failed!',
+                        });
+                    }
                 },
                 theme: {
                     color: '#F37254',
