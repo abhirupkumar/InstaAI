@@ -20,12 +20,10 @@ export async function POST(req: NextRequest) {
                 userId: user.id,
             }
         });
-        await updateSubscription(user.id, { subscriptionId: subscription.id });
 
         return NextResponse.json({
             subscriptionId: subscription.id,
             razorpayKey: process.env.RAZORPAY_KEY_ID!,
-            userId: user.id,
         }, { status: 200 });
     } catch (error) {
         NextResponse.json({ error: 'Failed to create subscription' }, { status: 403 });

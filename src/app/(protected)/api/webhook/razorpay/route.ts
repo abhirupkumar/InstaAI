@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import crypto from 'crypto';
 import { PLANS } from '@/constants/pages';
 import { updateSubscriptionFromId } from '@/actions/webhook/queries';
+import { updateSubscription } from '@/actions/user/queries';
 
 export async function POST(req: NextRequest) {
 
@@ -34,6 +35,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: 'Invalid plan' }, { status: 400 });
     }
     const subscriptionId = event.payload.subscription.entity.id;
+    const clerkId = event.payload.subscription.entity.notes.userId;
 
     switch (event.event) {
         case 'subscription.upgraded':
@@ -44,7 +46,8 @@ export async function POST(req: NextRequest) {
         case 'subscription.activated':
             console.log('Subscription activated: ', event.payload);
             console.log('Processing started at:', new Date().toISOString());
-            const activeSubscription = await updateSubscriptionFromId(subscriptionId, { plan, planId: planId as string });
+            // const activeSubscription = await updateSubscriptionFromId(subscriptionId, { plan, planId: planId as string });
+            const activeSubscription = await updateSubscription(clerkId, { subscriptionId: subscriptionId as string, plan, planId: planId as string });
             if (!activeSubscription) {
                 return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
             }
