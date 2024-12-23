@@ -125,3 +125,17 @@ export const getChatHistory = async (sender: string, reciever: string) => {
         automationId: history[history.length - 1].automationId,
     }
 }
+
+export const updateSubscriptionFromId = async (subscriptionId: string, props: {
+    plan?: 'FREE' | 'STANDARD' | 'PRO' | 'ULTIMATE'
+    planId?: string
+}) => {
+    return await client.subscription.update({
+        where: {
+            subscriptionId,
+        },
+        data: {
+            ...props,
+        }
+    })
+}

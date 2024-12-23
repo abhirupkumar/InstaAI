@@ -1,4 +1,4 @@
-import { findUser } from '@/actions/user/queries';
+import { findUser, updateSubscription } from '@/actions/user/queries';
 import { razorpay } from '@/lib/razorpay';
 import { currentUser } from '@clerk/nextjs/server'
 import { NextRequest, NextResponse } from 'next/server'
@@ -17,11 +17,11 @@ export async function POST(req: NextRequest) {
             total_count: 12, // Number of billing cycles
             customer_notify: 1, // Notify customer via email
         });
+        await updateSubscription(user.id, { subscriptionId: subscription.id });
 
         return NextResponse.json({
             subscriptionId: subscription.id,
             razorpayKey: process.env.RAZORPAY_KEY_ID!,
-            userId: user.id,
         }, { status: 200 });
     } catch (error) {
         NextResponse.json({ error: 'Failed to create subscription' }, { status: 403 });

@@ -35,7 +35,7 @@ const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, f
                 }),
             });
 
-            const { subscriptionId, razorpayKey, userId } = await response.json();
+            const { subscriptionId, razorpayKey } = await response.json();
 
             if (!subscriptionId) {
                 toast('Error', {
@@ -57,9 +57,6 @@ const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, f
                 },
                 theme: {
                     color: '#F37254',
-                },
-                notes: {
-                    userId: userId,
                 }
             };
 

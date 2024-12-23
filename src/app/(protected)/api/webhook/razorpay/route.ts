@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import crypto from 'crypto';
 import { updateSubscription } from '@/actions/user/queries';
 import { PLANS } from '@/constants/pages';
+import { updateSubscriptionFromId } from '@/actions/webhook/queries';
 
 export async function POST(req: NextRequest) {
 
@@ -22,9 +23,8 @@ export async function POST(req: NextRequest) {
     }
 
     event = request;
-    throw new Error("event: ", event.payload.subscription);
 
-    if (!event.payload.subscription || !event.payload.subscription.entity.plan_id || !event.payload.subscription.notes.userId) {
+    if (!event.payload.subscription || !event.payload.subscription.entity.plan_id || !event.payload.subscription.entity.id) {
         return NextResponse.json({ error: 'Invalid subscription' }, { status: 402 });
     }
 
@@ -33,13 +33,12 @@ export async function POST(req: NextRequest) {
     if (!plan) {
         return NextResponse.json({ error: 'Invalid plan' }, { status: 400 });
     }
-
-    const clerkId = event.payload.subscription.notes.userId;
+    const subscriptionId = event.payload.subscription.entity.id;
 
     switch (event.event) {
         case 'subscription.upgraded':
             console.log('Subscription upgraded: ', event.payload.subscription);
-            // const updatedSubscription = await updateSubscription(clerkId, { subscriptionId: event.payload.subscription.entity.id as string, plan, planId: planId as string });
+            // const updatedSubscription = await updateSubscriptionFromId(subscriptionId, { plan, planId: planId as string });
             // if (!updatedSubscription) {
             //     return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
             // }
@@ -47,7 +46,7 @@ export async function POST(req: NextRequest) {
 
         case 'subscription.activated':
             console.log('Subscription activated: ', event.payload.subscription);
-            const activeSubscription = await updateSubscription(clerkId, { subscriptionId: event.payload.subscription.entity.id as string, plan, planId: planId as string });
+            const activeSubscription = await updateSubscriptionFromId(subscriptionId, { plan, planId: planId as string });
             if (!activeSubscription) {
                 return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
             }
@@ -55,7 +54,7 @@ export async function POST(req: NextRequest) {
 
         case 'subscription.expired':
             console.log('Subscription expired: ', event.payload.subscription);
-            // const expiredSubscription = await updateSubscription(clerkId, { subscriptionId: event.payload.subscription.entity.id as string, plan, planId: planId as string });
+            // const expiredSubscription = await updateSubscriptionFromId(subscriptionId, { plan, planId: planId as string });
             // if (!expiredSubscription) {
             //     return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
             // }
