@@ -97,7 +97,7 @@ const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, f
                 ) : (
                     <h2 className="text-2xl">
                         {label === current
-                            ? 'Your Current Plan'
+                            ? (current !== 'FREE' && status == false) ? "Your Plan Expired" : 'Your Current Plan'
                             : number < PLANS.findIndex((p) => p.name === current)
                                 ? 'Downgrade'
                                 : 'Upgrade'}
@@ -149,11 +149,11 @@ const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, f
                 ) : (
                     <Button
                         className="rounded-full mt-5"
-                        disabled={label === current}
+                        disabled={label === current || (current !== 'FREE' && status == false)}
                         onClick={handleSubscription}
                     >
                         {label === current
-                            ? (current != 'FREE' && status == false) ? 'Expired' : 'Active'
+                            ? (current !== 'FREE' && status == false) ? 'Renew' : 'Active'
                             : 'Upgrade'}
                         {loading == label && <Loader2 className='h-4 w-5 animate-spin' />}
                     </Button>
