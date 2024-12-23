@@ -1,16 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
 import crypto from 'crypto';
-import { updateSubscription } from '@/actions/user/queries';
 import { PLANS } from '@/constants/pages';
 import { updateSubscriptionFromId } from '@/actions/webhook/queries';
 
 export async function POST(req: NextRequest) {
 
+    console.log('Webhook received at:', new Date().toISOString());
+
     const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET!;
     const receivedSignature = req.headers.get('x-razorpay-signature');
 
     let event;
-    // try {
     const request = await req.json();
     const body = JSON.stringify(request);
     const expectedSignature = crypto
@@ -37,15 +37,13 @@ export async function POST(req: NextRequest) {
 
     switch (event.event) {
         case 'subscription.upgraded':
-            console.log('Subscription upgraded: ', event.payload.subscription);
-            // const updatedSubscription = await updateSubscriptionFromId(subscriptionId, { plan, planId: planId as string });
-            // if (!updatedSubscription) {
-            //     return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
-            // }
+            console.log('Subscription upgraded: ', event);
+            console.log('Processing started at:', new Date().toISOString());
             return NextResponse.json({ status: 201 });
 
         case 'subscription.activated':
             console.log('Subscription activated: ', event);
+            console.log('Processing started at:', new Date().toISOString());
             const activeSubscription = await updateSubscriptionFromId(subscriptionId, { plan, planId: planId as string });
             if (!activeSubscription) {
                 return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
@@ -53,20 +51,13 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ status: 202 });
 
         case 'subscription.expired':
-            console.log('Subscription expired: ', event.payload.subscription);
-            // const expiredSubscription = await updateSubscriptionFromId(subscriptionId, { plan, planId: planId as string });
-            // if (!expiredSubscription) {
-            //     return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
-            // }
+            console.log('Subscription expired: ', event);
+            console.log('Processing started at:', new Date().toISOString());
             return NextResponse.json({ status: 203 });
 
         default:
             console.log('Unhandled event type:', event.event);
             return NextResponse.json({ status: 404 });
     }
-
-    // } catch (error) {
-    //     return NextResponse.json({ error: 'Failed to create subscription' }, { status: 404 });
-    // }
 
 }
