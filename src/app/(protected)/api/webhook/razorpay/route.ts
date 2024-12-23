@@ -34,6 +34,8 @@ export async function POST(req: NextRequest) {
         }
         const clerkId = event.payload.subscription.entity.notes.userId;
 
+        let flag = 0;
+
         switch (event.event) {
             case 'subscription.upgraded':
                 console.log('Subscription upgraded: ', event.payload.subscription);
@@ -41,6 +43,7 @@ export async function POST(req: NextRequest) {
                 // if (!updatedSubscription) {
                 //     return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
                 // }
+                flag = 1;
                 return NextResponse.json({ clerkId, subscription: event.payload.subscription, event: event.event }, { status: 201 });
 
             case 'subscription.activated':
@@ -49,6 +52,7 @@ export async function POST(req: NextRequest) {
                 if (!activeSubscription) {
                     return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
                 }
+                flag = 1;
                 return NextResponse.json({ clerkId, subscription: event.payload.subscription, event: event.event }, { status: 202 });
 
             case 'subscription.expired':
@@ -57,11 +61,17 @@ export async function POST(req: NextRequest) {
                 // if (!expiredSubscription) {
                 //     return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 403 });
                 // }
+                flag = 1;
                 return NextResponse.json({ clerkId, subscription: event.payload.subscription, event: event.event }, { status: 203 });
 
             default:
+                flag = 1;
                 console.log('Unhandled event type:', event.event);
-                return NextResponse.json({ status: 404 });
+                return NextResponse.json({ status: 500 });
+        }
+
+        if (flag == 0) {
+            return NextResponse.json({ error: 'Failed to update subscription!' }, { status: 407 });
         }
 
     } catch (error) {
@@ -69,5 +79,5 @@ export async function POST(req: NextRequest) {
     }
 
 
-    return NextResponse.json({ meg: "nothing worked" }, { status: 405 })
+    return NextResponse.json({ msg: "nothing worked" }, { status: 405 })
 }
