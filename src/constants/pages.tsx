@@ -69,7 +69,7 @@ export const PLANS = [
     {
         name: 'ULTIMATE',
         description: 'Ultimate features for power users',
-        price: 14499,
+        price: 15999,
         features: [
             'All features from Free Plan',
             'Unlimited chats per month',
