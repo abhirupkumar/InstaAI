@@ -1,7 +1,7 @@
 import { useQueryUser } from '@/hooks/user-queries'
 
 type Props = {
-    type: 'STANDARD' | 'PRO' | 'ULTIMATE' | 'FREE'
+    type: 'STANDARD' | 'PRO' | 'BUSINESS' | 'ENTERPRISE' | 'FREE'
     children: React.ReactNode
 }
 

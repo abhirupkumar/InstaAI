@@ -111,7 +111,8 @@ model Keyword {
 enum SUBSCRIPTION_PLAN {
     STANDARD
     PRO
-    ULTIMATE
+    BUSINESS
+    ENTERPRISE
     FREE
 }
 

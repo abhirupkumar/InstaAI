@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
     }
 
     const planId = event.payload.subscription.entity.plan_id;
-    const plan = PLANS.find((p) => p.planId == planId)?.name as "FREE" | "STANDARD" | "PRO" | "ULTIMATE";
+    const plan = PLANS.find((p) => p.planId == planId)?.name as "FREE" | "STANDARD" | "PRO" | 'BUSINESS' | 'ENTERPRISE';
     if (!plan) {
         return NextResponse.json({ error: 'Invalid plan' }, { status: 400 });
     }

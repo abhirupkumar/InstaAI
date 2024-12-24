@@ -10,7 +10,7 @@ import { toast } from 'sonner';
 
 type Props = {
     label: string
-    current: 'STANDARD' | 'PRO' | 'ULTIMATE' | 'FREE'
+    current: 'STANDARD' | 'PRO' | 'BUSINESS' | 'ENTERPRISE' | 'FREE'
     price?: number
     planId?: string | null
     landing?: boolean

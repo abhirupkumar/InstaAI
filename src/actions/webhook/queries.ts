@@ -127,7 +127,7 @@ export const getChatHistory = async (sender: string, reciever: string) => {
 }
 
 export const updateSubscriptionFromId = async (subscriptionId: string, props: {
-    plan?: 'FREE' | 'STANDARD' | 'PRO' | 'ULTIMATE'
+    plan?: 'FREE' | 'STANDARD' | 'PRO' | 'BUSINESS' | 'ENTERPRISE'
     planId?: string
 }) => {
     return await client.subscription.update({
