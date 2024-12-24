@@ -44,7 +44,7 @@ export const PLANS = [
         price: 2999,
         features: [
             'All features from Free Plan',
-            '2000 chats per month',
+            '10000 chats per month',
             'AI-powered response generation',
             'Advanced analytics and insights',
         ],
@@ -57,7 +57,7 @@ export const PLANS = [
         price: 6999,
         features: [
             'All features from Free Plan',
-            '8000 chats per month',
+            '50000 chats per month',
             'AI-powered response generation',
             'Advanced analytics and insights',
         ],

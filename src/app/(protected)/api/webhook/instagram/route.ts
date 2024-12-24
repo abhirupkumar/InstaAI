@@ -74,7 +74,7 @@ export async function POST(req: NextRequest) {
                         automation.User?.subscription?.plan !== 'FREE'
                     ) {
                         const proxy_ai_message = await groq.chat.completions.create({
-                            model: 'llama-3.3-70b-versatile',
+                            model: 'llama-3.1-8B-Instant',
                             messages: [
                                 {
                                     role: 'assistant',
@@ -185,7 +185,7 @@ export async function POST(req: NextRequest) {
                             automation.User?.subscription?.plan !== 'FREE'
                         ) {
                             const proxy_ai_message = await groq.chat.completions.create({
-                                model: 'llama-3.3-70b-versatile',
+                                model: 'llama-3.1-8B-Instant',
                                 messages: [
                                     {
                                         role: 'assistant',
@@ -250,7 +250,7 @@ export async function POST(req: NextRequest) {
                     automation && automation?.User?.subscription?.plan !== 'FREE' && automation.listener?.listener === 'PROXYAI'
                 ) {
                     const proxy_ai_message = await groq.chat.completions.create({
-                        model: 'llama-3.3-70b-versatile',
+                        model: 'llama-3.1-8B-Instant',
                         messages: [
                             {
                                 role: 'assistant',
