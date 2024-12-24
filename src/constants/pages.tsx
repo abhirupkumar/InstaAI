@@ -44,11 +44,12 @@ export const PLANS = [
         price: 2999,
         features: [
             'All features from Free Plan',
-            '10000 chats per month',
+            '5000 chats per month',
             'AI-powered response generation',
             'Advanced analytics and insights',
         ],
         planId: 'plan_PZX6I65iuz8fnA',
+        limit: 5000,
         cta: 'Upgrade Now',
     },
     {
@@ -62,6 +63,7 @@ export const PLANS = [
             'Advanced analytics and insights',
         ],
         planId: 'plan_PZX6izDdD7rJOF',
+        limit: 50000,
         cta: 'Upgrade Now',
     },
     {
@@ -75,6 +77,7 @@ export const PLANS = [
             'Advanced analytics and insights',
         ],
         planId: 'plan_PZX736UKg4oApf',
+        limit: 999999999999999,
         cta: 'Upgrade Now',
     },
 ]
