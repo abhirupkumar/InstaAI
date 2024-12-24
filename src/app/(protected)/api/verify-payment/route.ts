@@ -6,11 +6,11 @@ export async function POST(req: NextRequest) {
     try {
         const { razorpay_payment_id, razorpay_subscription_id, razorpay_signature } = await req.json();
 
-        const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET!;
+        const secret = process.env.RAZORPAY_KEY_SECRET!;
 
         // Step 1: Validate the signature
         const generatedSignature = crypto
-            .createHmac('sha256', webhookSecret)
+            .createHmac('sha256', secret)
             .update(`${razorpay_payment_id}|${razorpay_subscription_id}`)
             .digest('hex');
 
