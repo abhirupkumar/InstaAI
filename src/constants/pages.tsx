@@ -91,7 +91,7 @@ export const PLANS = [
             'AI-powered response generation',
             'Advanced analytics and insights',
         ],
-        planId: 'plan_PZX736UKg4oApf',
+        planId: null,
         limit: 999999999999999,
         cta: 'Upgrade Now',
     },

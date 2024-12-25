@@ -108,7 +108,7 @@ const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, f
                 label !== current
                     ? 'bg-in-active'
                     : 'bg-custom-gradient',
-                'p-[2px] rounded-xl overflow-hidden'
+                'p-[2px] rounded-xl overflow-hidden lg:max-w-[18rem]'
             )}
         >
             <div
