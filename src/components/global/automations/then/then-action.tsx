@@ -29,7 +29,7 @@ const ThenAction = ({ id }: Props) => {
                     listener.type === 'PROXYAI' ? (
                         <SubscriptionPlan
                             key={listener.type}
-                            type="PRO"
+                            notType="FREE"
                         >
                             <div
                                 onClick={() => onSetListener(listener.type)}
