@@ -15,12 +15,13 @@ export async function POST(req: NextRequest) {
             .digest('hex');
 
         if (generatedSignature !== razorpay_signature) {
+            console.log('Invalid signature');
             return NextResponse.json({ success: false, error: 'Invalid signature' }, { status: 401 });
         }
 
         const subscription = await razorpay.subscriptions.fetch(razorpay_subscription_id);
-
-        if (subscription.status === 'active') {
+        const states = ["halted", "active", "cancelled", "completed", "expired"];
+        if (!states.includes(subscription.status)) {
             return NextResponse.json({ success: true, message: 'Subscription Verified!' }, { status: 200 });
         } else {
             return NextResponse.json({ success: false, error: 'Subscription is not active!' }, { status: 402 });

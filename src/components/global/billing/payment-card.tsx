@@ -1,10 +1,11 @@
 "use client";
 
 import { onCurrentUser } from '@/actions/user';
-import { Button } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
 import { PLANS } from '@/constants/pages';
 import { cn } from '@/lib/utils'
 import { CircleCheck, Loader2 } from 'lucide-react'
+import Link from 'next/link';
 import React, { useState } from 'react'
 import { toast } from 'sonner';
 
@@ -165,7 +166,7 @@ const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, f
                     </p>
                 ))}
 
-                {landing ? (
+                {label != 'ENTERPRISE' ? landing ? (
                     <Button
                         className={cn(
                             'rounded-full mt-5',
@@ -191,7 +192,9 @@ const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, f
                             : 'Upgrade'}
                         {loading == label && <Loader2 className='h-4 w-5 animate-spin' />}
                     </Button>
-                )}
+                )
+                    :
+                    <Link className={cn(buttonVariants(), "rounded-full mt-5")} href="/contact">Contact Us</Link>}
             </div>
         </div>
     )
