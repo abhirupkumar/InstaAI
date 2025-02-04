@@ -142,9 +142,15 @@ const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, f
                     <p className="font-bold mt-2 text-text-secondary">Free</p>
                 )}
                 {label !== 'FREE' ? (
-                    <p className="mb-2">
-                        <b className="text-xl">₹ {price}</b>/month
-                    </p>
+                    <>
+                        {label != 'ENTERPRISE' ? <p className="mb-2">
+                            <b className="text-xl">₹ {price}</b>/month
+                        </p>
+                            :
+                            <p className="mb-2">
+                                <b className="text-xl">Contact Us</b>
+                            </p>}
+                    </>
                 ) : (
                     <p className="text-xl mb-2">₹ 0</p>
                 )}
