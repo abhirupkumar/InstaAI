@@ -68,7 +68,7 @@ export const PLANS = [
         cta: 'Upgrade Now',
     },
     {
-        name: 'Business',
+        name: 'BUSINESS',
         description: 'Ultimate features for power users',
         price: 14499,
         features: [
@@ -82,11 +82,11 @@ export const PLANS = [
         cta: 'Upgrade Now',
     },
     {
-        name: 'Enterprise',
-        description: 'Ultimate features for power users',
+        name: 'ENTERPRISE',
+        description: 'Unlimited features for power users',
         price: 999999999999999,
         features: [
-            'All features from Free Plan',
+            'All features from Business Plan',
             'Unlimited chats per month',
             'AI-powered response generation',
             'Advanced analytics and insights',
