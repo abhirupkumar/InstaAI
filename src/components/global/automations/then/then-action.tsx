@@ -26,7 +26,7 @@ const ThenAction = ({ id }: Props) => {
         <TriggerButton label="Then">
             <div className="flex flex-col gap-y-2 ">
                 {AUTOMATION_LISTENERS.map((listener) =>
-                    listener.type === 'PROXYAI' ? (
+                    listener.type === 'INSTAAI' ? (
                         <SubscriptionPlan
                             key={listener.type}
                             notType="FREE"
@@ -73,8 +73,8 @@ const ThenAction = ({ id }: Props) => {
                 >
                     {/* <Textarea
                         placeholder={
-                            Listener === 'PROXYAI'
-                                ? 'Add a prompt that your proxy ai can use...'
+                            Listener === 'INSTAAI'
+                                ? 'Add a prompt that your instaai ai can use...'
                                 : 'Add a message you want send to your customers'
                         }
                         {...register('prompt')}

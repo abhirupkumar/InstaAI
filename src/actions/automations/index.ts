@@ -87,7 +87,7 @@ export const updateAutomationName = async (
 
 export const saveListener = async (
     autmationId: string,
-    listener: 'PROXYAI' | 'MESSAGE',
+    listener: 'INSTAAI' | 'MESSAGE',
     prompt?: string,
     reply?: string,
     listnerId?: string

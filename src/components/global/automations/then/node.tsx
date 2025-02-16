@@ -2,7 +2,7 @@
 
 import { Separator } from '@/components/ui/separator'
 import { useQueryAutomation } from '@/hooks/user-queries'
-import { PlaneBlue, ProxyAi, Warning } from '@/icons'
+import { PlaneBlue, InstaAI, Warning } from '@/icons'
 import React, { useEffect } from 'react'
 import PostButton from '../post'
 import DeleteDialog from '../../delete-dialog'
@@ -58,12 +58,12 @@ const ThenNode = ({ id }: Props) => {
                     {data.data.listener.listener === 'MESSAGE' ? (
                         <PlaneBlue />
                     ) : (
-                        <ProxyAi />
+                        <InstaAI />
                     )}
                     <p className=" text-lg">
                         {data.data.listener.listener === 'MESSAGE'
                             ? 'Send the user a message.'
-                            : 'Let Proxy AI take over'}
+                            : 'Let InstaAI AI take over'}
                     </p>
                 </div>
                 <form
@@ -72,8 +72,8 @@ const ThenNode = ({ id }: Props) => {
                 >
                     <Textarea
                         placeholder={
-                            Listener === 'PROXYAI'
-                                ? 'Add a prompt that your proxy ai can use...'
+                            Listener === 'INSTAAI'
+                                ? 'Add a prompt that your instaai ai can use...'
                                 : 'Add a message you want send to your customers'
                         }
                         {...register('prompt')}

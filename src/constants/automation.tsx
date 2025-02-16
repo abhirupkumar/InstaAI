@@ -1,4 +1,4 @@
-import { PlaneBlue, ProxyAi, TinyInstagram } from '@/icons'
+import { PlaneBlue, InstaAI, TinyInstagram } from '@/icons'
 import { v4 } from 'uuid'
 
 import type { JSX } from "react";
@@ -8,7 +8,7 @@ export type AutomationListenerProps = {
     label: string
     icon: JSX.Element
     description: string
-    type: 'PROXYAI' | 'MESSAGE'
+    type: 'INSTAAI' | 'MESSAGE'
 }
 export type AutomationsTriggerProps = {
     id: string
@@ -45,9 +45,9 @@ export const AUTOMATION_LISTENERS: AutomationListenerProps[] = [
     },
     {
         id: v4(),
-        label: 'Let Proxy AI take over',
-        icon: <ProxyAi />,
+        label: 'Let InstaAI AI take over',
+        icon: <InstaAI />,
         description: 'Tell AI about your project. (Upgrade to use this feature)',
-        type: 'PROXYAI',
+        type: 'INSTAAI',
     },
 ]

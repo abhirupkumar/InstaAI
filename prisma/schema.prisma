@@ -127,6 +127,6 @@ enum MEDIATYPE {
 }
 
 enum LISTENERS {
-    PROXYAI
+    INSTAAI
     MESSAGE
 }

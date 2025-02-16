@@ -1,4 +1,4 @@
-export const ProxyAi = () => {
+export const InstaAI = () => {
     return (
         <svg
             width="16"

@@ -70,10 +70,10 @@ export async function POST(req: NextRequest) {
 
                     if (
                         automation.listener &&
-                        automation.listener.listener === 'PROXYAI' &&
+                        automation.listener.listener === 'INSTAAI' &&
                         automation.User?.subscription?.plan !== 'FREE'
                     ) {
-                        const proxy_ai_message = await groq.chat.completions.create({
+                        const instaai_ai_message = await groq.chat.completions.create({
                             model: 'llama-3.1-8B-Instant',
                             messages: [
                                 {
@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
                             ],
                         })
 
-                        if (proxy_ai_message.choices[0].message.content) {
+                        if (instaai_ai_message.choices[0].message.content) {
                             const reciever = createChatHistory(
                                 automation.id,
                                 webhook_payload.entry[0].id,
@@ -96,7 +96,7 @@ export async function POST(req: NextRequest) {
                                 automation.id,
                                 webhook_payload.entry[0].id,
                                 webhook_payload.entry[0].messaging[0].sender.id,
-                                proxy_ai_message.choices[0].message.content
+                                instaai_ai_message.choices[0].message.content
                             )
 
                             await client.$transaction([reciever, sender])
@@ -104,7 +104,7 @@ export async function POST(req: NextRequest) {
                             const direct_message = await sendDM(
                                 webhook_payload.entry[0].id,
                                 webhook_payload.entry[0].messaging[0].sender.id,
-                                proxy_ai_message.choices[0].message.content,
+                                instaai_ai_message.choices[0].message.content,
                                 automation.User?.integrations[0].token!
                             )
 
@@ -181,10 +181,10 @@ export async function POST(req: NextRequest) {
                             }
                         }
                         if (
-                            automation.listener.listener === 'PROXYAI' &&
+                            automation.listener.listener === 'INSTAAI' &&
                             automation.User?.subscription?.plan !== 'FREE'
                         ) {
-                            const proxy_ai_message = await groq.chat.completions.create({
+                            const instaai_ai_message = await groq.chat.completions.create({
                                 model: 'llama-3.1-8B-Instant',
                                 messages: [
                                     {
@@ -194,7 +194,7 @@ export async function POST(req: NextRequest) {
                                     },
                                 ],
                             })
-                            if (proxy_ai_message.choices[0].message.content) {
+                            if (instaai_ai_message.choices[0].message.content) {
                                 const reciever = createChatHistory(
                                     automation.id,
                                     webhook_payload.entry[0].id,
@@ -206,7 +206,7 @@ export async function POST(req: NextRequest) {
                                     automation.id,
                                     webhook_payload.entry[0].id,
                                     webhook_payload.entry[0].changes[0].value.from.id,
-                                    proxy_ai_message.choices[0].message.content
+                                    instaai_ai_message.choices[0].message.content
                                 )
 
                                 await client.$transaction([reciever, sender])
@@ -247,9 +247,9 @@ export async function POST(req: NextRequest) {
                 const automation = await findAutomation(customer_history.automationId!)
 
                 if (
-                    automation && automation?.User?.subscription?.plan !== 'FREE' && automation.listener?.listener === 'PROXYAI'
+                    automation && automation?.User?.subscription?.plan !== 'FREE' && automation.listener?.listener === 'INSTAAI'
                 ) {
-                    const proxy_ai_message = await groq.chat.completions.create({
+                    const instaai_ai_message = await groq.chat.completions.create({
                         model: 'llama-3.1-8B-Instant',
                         messages: [
                             {
@@ -264,7 +264,7 @@ export async function POST(req: NextRequest) {
                         ],
                     })
 
-                    if (proxy_ai_message.choices[0].message.content) {
+                    if (instaai_ai_message.choices[0].message.content) {
                         const reciever = createChatHistory(
                             automation.id,
                             webhook_payload.entry[0].id,
@@ -276,13 +276,13 @@ export async function POST(req: NextRequest) {
                             automation.id,
                             webhook_payload.entry[0].id,
                             webhook_payload.entry[0].messaging[0].sender.id,
-                            proxy_ai_message.choices[0].message.content
+                            instaai_ai_message.choices[0].message.content
                         )
                         await client.$transaction([reciever, sender])
                         const direct_message = await sendDM(
                             webhook_payload.entry[0].id,
                             webhook_payload.entry[0].messaging[0].sender.id,
-                            proxy_ai_message.choices[0].message.content,
+                            instaai_ai_message.choices[0].message.content,
                             automation.User?.integrations[0].token!
                         )
 

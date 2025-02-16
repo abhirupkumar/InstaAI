@@ -15,10 +15,10 @@ export default function Home() {
                     <section className="mx-auto sm:px-10 px-4 py-16">
                         <div className="flex flex-col items-center text-center max-w-3xl mx-auto space-y-8">
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                                Transform Your Customer Communication with Proxy
+                                Transform Your Customer Communication with InstaAI
                             </h1>
                             <p className="text-lg text-muted-foreground max-w-2xl">
-                                Proxy empowers businesses to streamline customer interactions effortlessly through popular messaging platforms. Experience enhanced engagement, faster responses, and improved customer satisfaction with our intuitive chatbot solutions.
+                                InstaAI empowers businesses to streamline customer interactions effortlessly through popular messaging platforms. Experience enhanced engagement, faster responses, and improved customer satisfaction with our intuitive chatbot solutions.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <Button size="lg" className="min-w-[150px]">
@@ -54,7 +54,7 @@ export default function Home() {
                                 Streamline Your Customer Communication Effortlessly
                             </h2>
                             <p className="text-muted-foreground max-w-2xl mb-16">
-                                Proxy simplifies customer interactions by automating responses through Instagram. This ensures your customers receive timely and accurate information, enhancing their experience.
+                                InstaAI simplifies customer interactions by automating responses through Instagram. This ensures your customers receive timely and accurate information, enhancing their experience.
                             </p>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center w-full max-w-6xl">
                                 {/* Left Features */}
@@ -65,7 +65,7 @@ export default function Home() {
                                         </div>
                                         <h3 className="font-semibold text-lg">Automate Replies to Comments on Instagram</h3>
                                         <p className="text-sm text-muted-foreground">
-                                            Proxy AI identifies key audience inquiries and responds to comments with precision, saving time while boosting engagement.
+                                            InstaAI AI identifies key audience inquiries and responds to comments with precision, saving time while boosting engagement.
                                         </p>
                                     </div>
                                     <div className="text-center space-y-3">
@@ -137,7 +137,7 @@ export default function Home() {
                                     Seamless Integration with Instagram
                                 </h2>
                                 <p className="text-muted-foreground">
-                                    Experience the power of Ai Engagement Automation with Proxy. Our chatbot seamlessly connects with Instagram ensuring your business is always accessible. Enhance customer engagement and streamline communication effortlessly.
+                                    Experience the power of Ai Engagement Automation with InstaAI. Our chatbot seamlessly connects with Instagram ensuring your business is always accessible. Enhance customer engagement and streamline communication effortlessly.
                                 </p>
                                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
                                     <Button variant="outline" size="lg">
@@ -189,7 +189,7 @@ export default function Home() {
                         />
                     </div>
                     <div className="space-y-6">
-                        <span className="text-sm font-medium">Proxy AI</span>
+                        <span className="text-sm font-medium">InstaAI AI</span>
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
                             Experience Seamless AI-Driven Customer Interactions
                         </h2>

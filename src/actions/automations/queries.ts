@@ -84,7 +84,7 @@ export const updateAutomation = async (
 
 export const upsertListener = async (
     automationId: string,
-    listener: 'PROXYAI' | 'MESSAGE',
+    listener: 'INSTAAI' | 'MESSAGE',
     prompt?: string,
     reply?: string,
     listnerId?: string
@@ -107,7 +107,7 @@ export const upsertListener = async (
             listener: {
                 create: {
                     listener,
-                    prompt: prompt || (listener === 'PROXYAI' ? SAMPLE_AI_PROMPT : 'Hello, Nice to meet you!'),
+                    prompt: prompt || (listener === 'INSTAAI' ? SAMPLE_AI_PROMPT : 'Hello, Nice to meet you!'),
                     commentReply: reply,
                 },
             },

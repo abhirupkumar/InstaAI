@@ -19,7 +19,7 @@ const UpgradeCard = (props: Props) => {
         bg-clip-text 
         text-transparent"
                 >
-                    Proxy AI
+                    InstaAI AI
                 </span>
             </span>
             <p className="text-[#9B9CA0] font-light text-sm">

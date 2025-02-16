@@ -52,8 +52,8 @@ const PaymentCard = ({ current, label, landing, price, planId, subscriptionId, f
             const options = {
                 key: razorpayKey,
                 subscription_id: subscriptionId,
-                name: 'Proxy',
-                description: 'Use Proxy to automate your Instagram engagement',
+                name: 'InstaAI',
+                description: 'Use InstaAI to automate your Instagram engagement',
                 image: "/images/logo-white.png",
                 handler: async function (response: any) {
                     try {

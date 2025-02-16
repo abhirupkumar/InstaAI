@@ -11,7 +11,7 @@ export const INTEGRATION_CARDS: Props[] = [
     {
         title: 'Connect Instagram',
         description:
-            'Connect your Instagram account to Proxy to start automating your interactions',
+            'Connect your Instagram account to InstaAI to start automating your interactions',
         icon: <InstagramDuoToneBlue />,
         strategy: 'INSTAGRAM',
 

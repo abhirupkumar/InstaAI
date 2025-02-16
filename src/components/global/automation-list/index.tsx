@@ -91,11 +91,11 @@ const AutomationList = (props: Props) => {
                         </p>
                         <DeleteAutomationButton id={automation.id} />
 
-                        {automation.listener?.listener === 'PROXYAI' ? (
+                        {automation.listener?.listener === 'INSTAAI' ? (
                             <GradientButton
                                 type="BUTTON"
                             >
-                                Proxy AI
+                                InstaAI AI
                             </GradientButton>
                         ) : (
                             <Button>

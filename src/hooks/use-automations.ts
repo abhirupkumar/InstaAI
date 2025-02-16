@@ -81,7 +81,7 @@ export const useEditAutomation = (automationId: string) => {
 }
 
 export const useListener = (id: string) => {
-  const [listener, setListener] = useState<'MESSAGE' | 'PROXYAI' | null>(null)
+  const [listener, setListener] = useState<'MESSAGE' | 'INSTAAI' | null>(null)
 
   const promptSchema = z.object({
     prompt: z.string().optional(),
@@ -107,7 +107,7 @@ export const useListener = (id: string) => {
     'automation-info'
   )
 
-  const onSetListener = (type: 'PROXYAI' | 'MESSAGE') => setListener(type)
+  const onSetListener = (type: 'INSTAAI' | 'MESSAGE') => setListener(type)
   return { onSetListener, register, onFormSubmit, listener, isPending, reset, deleteMutation }
 }
 

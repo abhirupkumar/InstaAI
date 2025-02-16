@@ -7,7 +7,7 @@ export function Footer() {
             <div className="container mx-auto px-4 py-12">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div>
-                        <h3 className="font-bold text-lg mb-4">Proxy</h3>
+                        <h3 className="font-bold text-lg mb-4">InstaAI</h3>
                         <p className="text-sm">Revolutionizing customer engagement with AI-powered solutions.</p>
                     </div>
                     <div>
@@ -48,7 +48,7 @@ export function Footer() {
                     </div>
                 </div>
                 <div className="mt-8 pt-8 border-t border-gray-200">
-                    <p className="text-sm text-center">&copy; {new Date().getFullYear()} Proxy. All rights reserved.</p>
+                    <p className="text-sm text-center">&copy; {new Date().getFullYear()} InstaAI. All rights reserved.</p>
                 </div>
             </div>
         </footer>

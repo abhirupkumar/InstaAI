@@ -11,8 +11,8 @@ import CustomClerkProvider from '@/components/global/clerk'
 const novaSquare = Nova_Square({ subsets: ['latin'], weight: '400' })
 
 export const metadata: Metadata = {
-  title: 'Proxy',
-  description: 'Proxy is an AI Social Media Engagement Automation Platform',
+  title: 'InstaAI',
+  description: 'InstaAI is an AI Social Media Engagement Automation Platform',
   icons: [
     {
       media: "(prefers-color-scheme: light)",
