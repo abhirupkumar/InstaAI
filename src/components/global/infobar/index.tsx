@@ -73,14 +73,14 @@ const MenuButton = ({ page, slug }: { page: string, slug: string }) => {
 dark:bg-black bg-opacity-90 bg-clip-padding backdrop-filter backdrop--blur__safari backdrop-blur-3xl">
                     <Link href="/" className="flex gap-x-2 items-center p-5 justify-center">
                         <Image
-                            src="/images/logo-white.svg"
+                            src="/images/logo-white.png"
                             alt="InstaAI Logo"
                             height={100}
                             width={300}
                             className="block dark:hidden"
                         />
                         <Image
-                            src="/images/logo-dark.svg"
+                            src="/images/logo-white.png"
                             alt="InstaAI Logo"
                             height={100}
                             width={300}

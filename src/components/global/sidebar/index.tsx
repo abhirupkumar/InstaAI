@@ -52,14 +52,14 @@ const Sidebar = ({ slug }: Props) => {
                 <div className="flex gap-x-2 items-center p-5 justify-center">
                     <Link href="/">
                         <Image
-                            src="/images/logo-white.svg"
+                            src="/images/logo-white.png"
                             alt="InstaAI Logo"
                             height={100}
                             width={200}
                             className="block dark:hidden"
                         />
                         <Image
-                            src="/images/logo-dark.svg"
+                            src="/images/logo-white.png"
                             alt="InstaAI Logo"
                             height={100}
                             width={200}

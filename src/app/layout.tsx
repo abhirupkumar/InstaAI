@@ -15,14 +15,7 @@ export const metadata: Metadata = {
   description: 'InstaAI is an AI Social Media Engagement Automation Platform',
   icons: [
     {
-      media: "(prefers-color-scheme: light)",
-      url: '/images/logo-white.svg',
-      type: "image/svg+xml",
-    },
-    {
-      media: "(prefers-color-scheme: dark)",
-      url: '/images/logo-dark.svg',
-      type: "image/svg+xml",
+      url: '/images/logo-white.png',
     },
   ],
 }
