@@ -24,8 +24,7 @@ export async function Navbar() {
                 <div className="flex items-center justify-between h-16">
                     <div className="flex-shrink-0">
                         <Link href="/">
-                            <Image src="/images/logo-white.png" alt="InstaAI Logo" width={100} height={50} className="block dark:hidden" />
-                            <Image src="/images/logo-white.png" alt="InstaAI Logo" width={100} height={50} className="hidden dark:block" />
+                            <Image src="/images/logo-white.png" alt="InstaAI Logo" width={100} height={50} className='w-auto h-[60px]' />
                         </Link>
                     </div>
                     <div className="hidden md:block">

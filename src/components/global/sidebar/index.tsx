@@ -56,14 +56,6 @@ const Sidebar = ({ slug }: Props) => {
                             alt="InstaAI Logo"
                             height={100}
                             width={200}
-                            className="block dark:hidden"
-                        />
-                        <Image
-                            src="/images/logo-white.png"
-                            alt="InstaAI Logo"
-                            height={100}
-                            width={200}
-                            className="hidden dark:block"
                         />
                     </Link>
                 </div>

@@ -77,14 +77,6 @@ dark:bg-black bg-opacity-90 bg-clip-padding backdrop-filter backdrop--blur__safa
                             alt="InstaAI Logo"
                             height={100}
                             width={300}
-                            className="block dark:hidden"
-                        />
-                        <Image
-                            src="/images/logo-white.png"
-                            alt="InstaAI Logo"
-                            height={100}
-                            width={300}
-                            className="hidden dark:block"
                         />
                     </Link>
                     <div className="flex flex-col py-3">
